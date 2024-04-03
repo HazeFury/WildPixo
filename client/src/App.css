@@ -1,9 +1,15 @@
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+}
+
 body {
   background: rgb(75, 110, 78);
   background: linear-gradient(
     0deg,
-    rgba(75, 110, 78, 1) 0%,
-    rgba(0, 0, 0, 1) 95%
+    rgba(75, 110, 78, 0.723) 0%,
+    rgb(32, 32, 32) 95%
   );
   height: 100dvh;
 }
