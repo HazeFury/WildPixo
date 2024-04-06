@@ -1,9 +1,11 @@
 import "./App.css";
+import "nes.css/css/nes.min.css";
+import Navbar from "./components/app-components/Navbar/Navbar";
 
 function App() {
   return (
     <main>
-      <h1>hello</h1>
+      <Navbar />
     </main>
   );
 }
