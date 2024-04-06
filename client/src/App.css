@@ -21,7 +21,7 @@ body {
 
 :root {
   --primary-color: red;
-  --secondary-color: orange;
+  --secondary-color: black;
   --large-bit-policy: "Press Start 2P", sans-serif;
   --small-bit-policy: "Micro 5", sans-serif;
   --other-bit-policy: "Workbench", sans-serif;
