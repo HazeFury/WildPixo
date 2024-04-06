@@ -20,7 +20,7 @@ body {
 /* ----------------  VARIABLES  ----------------------- */
 
 :root {
-  --primary-color: blue;
+  --primary-color: red;
   --secondary-color: orange;
   --large-bit-policy: "Press Start 2P", sans-serif;
   --small-bit-policy: "Micro 5", sans-serif;
