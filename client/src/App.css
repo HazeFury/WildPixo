@@ -27,4 +27,35 @@ body {
   --other-bit-policy: "Workbench", sans-serif;
   --light-policy: "Amatic SC", sans-serif;
   --other-bit-policy: "Workbench", sans-serif;
+  /* ----------------------  NES variables ---------------------------- */
+  --default-normal-color: var(--background-color);
+  --default-hover-color: #e7e7e7;
+  --default-shadow-color: #adafbc;
+
+  --disabled-normal-color: #d3d3d3;
+  --disabled-shadow-color: #adafbc;
+
+  --primary-normal-color: #209cee;
+  --primary-hover-color: #108de0;
+  --primary-shadow-color: #006bb3;
+
+  --success-normal-color: #92cc41;
+  --success-hover-color: #76c442;
+  --success-shadow-color: #4aa52e;
+
+  --warning-normal-color: #f7d51d;
+  --warning-hover-color: #f2c409;
+  --warning-shadow-color: #e59400;
+
+  --error-normal-color: #e76e55;
+  --error-hover-color: #ce372b;
+  --error-shadow-color: #8c2022;
+
+  --orange-normal-color: #e7a355;
+  --orange-hover-color: #ce7f2b;
+  --orange-shadow-color: #8c5820;
+
+  --violet-normal-color: #c820ee;
+  --violet-hover-color: #7a00b3;
+  --violet-shadow-color: #872ea5;
 }

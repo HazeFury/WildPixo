@@ -1,0 +1,78 @@
+/* -----------  NES BUTTON  ------------------- */
+
+/* ------- VIOLET  --------- */
+.nes-btn.is-violet {
+  color: #fff;
+  background-color: var(--violet-normal-color);
+}
+.nes-btn.is-violet::after {
+  box-shadow: inset -4px -4px var(--violet-hover-color);
+}
+.nes-btn.is-violet:hover::after {
+  box-shadow: inset -6px -6px var(--violet-shadow-color);
+}
+
+/* ------- BLUE  --------- */
+.nes-btn.is-blue {
+  color: #fff;
+  background-color: var(--primary-normal-color);
+}
+.nes-btn.is-blue::after {
+  box-shadow: inset -4px -4px var(--primary-hover-color);
+}
+.nes-btn.is-blue:hover::after {
+  box-shadow: inset -6px -6px var(--primary-shadow-color);
+}
+
+/* ------- YELLOW  --------- */
+.nes-btn.is-yellow {
+  color: #fff;
+  background-color: var(--warning-normal-color);
+}
+.nes-btn.is-yellow::after {
+  box-shadow: inset -4px -4px var(--warning-hover-color);
+}
+.nes-btn.is-yellow:hover::after {
+  box-shadow: inset -6px -6px var(--warning-shadow-color);
+}
+
+/* ------- RED  --------- */
+.nes-btn.is-red {
+  color: #fff;
+  background-color: var(--error-normal-color);
+}
+.nes-btn.is-red::after {
+  box-shadow: inset -4px -4px var(--error-hover-color);
+}
+.nes-btn.is-red:hover::after {
+  box-shadow: inset -6px -6px var(--error-shadow-color);
+}
+
+/* ------- GREEN  --------- */
+.nes-btn.is-green {
+  color: #fff;
+  background-color: var(--success-normal-color);
+}
+.nes-btn.is-green::after {
+  box-shadow: inset -4px -4px var(--success-hover-color);
+}
+.nes-btn.is-green:hover::after {
+  box-shadow: inset -6px -6px var(--success-shadow-color);
+}
+
+/* ------- ORANGE  --------- */
+.nes-btn.is-orange {
+  color: #fff;
+  background-color: var(--orange-normal-color);
+}
+.nes-btn.is-orange::after {
+  box-shadow: inset -4px -4px var(--orange-hover-color);
+}
+.nes-btn.is-orange:hover::after {
+  box-shadow: inset -6px -6px var(--orange-shadow-color);
+}
+
+/* ----------------------------------------------- */
+/* .is-blue {
+  color: var(--primary-normal-color);
+} */

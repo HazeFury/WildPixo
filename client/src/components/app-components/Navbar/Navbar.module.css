@@ -67,3 +67,10 @@
     opacity: 1;
   }
 }
+
+@media screen and (max-width: 600px) {
+  .nav_container {
+    position: sticky;
+    top: 0;
+  }
+}

@@ -4,7 +4,8 @@
   "scripts": {
     "dev": "vite --host",
     "build": "vite build",
-    "preview": "vite preview"
+    "preview": "vite preview",
+    "prettierW": "prettier . --write"
   },
   "dependencies": {
     "nes.css": "^2.3.0",
