@@ -1,0 +1,22 @@
+.header_container {
+  border: 1px solid #9dff00;
+  min-height: 80dvh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+}
+
+.header_title {
+  margin-top: 20px;
+}
+.header_span {
+  color: red;
+  font-weight: bold;
+  font-size: 1.6rem;
+}
+
+.toto {
+  margin-top: 80px;
+}
