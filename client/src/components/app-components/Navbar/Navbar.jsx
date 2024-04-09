@@ -67,7 +67,7 @@ function Navbar() {
               <span className="nes-text is-error">À propos</span>
             </NavLink>
             <NavLink className={styles.navlink_style} to="/">
-              <button type="button" className="nes-btn">
+              <button type="button" className="nes-btn is-violet">
                 <img
                   className={styles.nav_user_btn}
                   src={User}
@@ -119,7 +119,7 @@ function Navbar() {
             <Link to="/">
               <button
                 type="button"
-                className="nes-btn"
+                className="nes-btn is-violet"
                 onClick={handleCloseMenu}
               >
                 Se connecter
