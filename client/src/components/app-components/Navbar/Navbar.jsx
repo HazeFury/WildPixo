@@ -55,7 +55,7 @@ function Navbar() {
         {onDesktopFormat && (
           <div className={styles.nav_link_container}>
             <NavLink className={styles.navlink_style} to="/">
-              <span className="nes-text is-primary">Accueil</span>
+              <span className="nes-text is-blue">Accueil</span>
             </NavLink>
             <NavLink className={styles.navlink_style} to="/">
               <span className="nes-text is-success">Jeux</span>
@@ -82,7 +82,7 @@ function Navbar() {
         <section className={styles.opened_menu_section}>
           <button
             type="button"
-            className="nes-btn is-primary"
+            className="nes-btn is-blue"
             onClick={handleCloseMenu}
           >
             Accueil
