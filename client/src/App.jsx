@@ -10,7 +10,6 @@ function App() {
   return (
     <main>
       <Navbar />
-      {/* <Outlet /> */}
       <Header />
       <GameSection />
       <Footer />
