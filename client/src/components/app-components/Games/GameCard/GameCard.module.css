@@ -1,0 +1,48 @@
+.game_card_box {
+  border: 1px solid #939393;
+  width: 90vw;
+  min-width: 250px;
+  max-width: 350px;
+  margin: 40px;
+  box-shadow: 5px 4px 0px 4px rgb(190, 152, 152);
+  cursor:
+    url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAACAAAAAgCAYAAABzenr0AAAAzElEQVRYR+2X0Q6AIAhF5f8/2jYXZkwEjNSVvVUjDpcrGgT7FUkI2D9xRfQETwNIiWO85wfINfQUEyxBG2ArsLwC0jioGt5zFcwF4OYDPi/mBYKm4t0U8ATgRm3ThFoAqkhNgWkA0jJLvaOVSs7j3qMnSgXWBMiWPXe94QqMBMBc1VZIvaTu5u5pQewq0EqNZvIEMCmxAawK0DNkay9QmfFNAJUXfgGgUkLaE7j/h8fnASkxHTz0DGIBMCnBeeM7AArpUd3mz2x3C7wADglA8BcWMZhZAAAAAElFTkSuQmCC)
+      14 0,
+    pointer;
+  transition: all 0.1s ease-in;
+}
+
+.game_card_box:hover {
+  box-shadow: 0px 0px 0px 0px rgb(190, 152, 152);
+}
+
+.game_card_img {
+  width: 100%;
+}
+
+.normal_policy {
+  margin: 10px 0;
+  font-size: 1rem;
+  color: rgb(255, 91, 91);
+}
+.small_policy {
+  margin: 10px 0;
+  font-size: 0.65rem;
+  color: rgb(255, 91, 91);
+}
+
+.more_detail_card {
+  font-size: 1rem;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 10px;
+  align-items: center;
+  font-family: var(--other-bit-policy);
+}
+
+@media screen and (min-width: 500px) {
+  .game_card_img {
+    width: 100%;
+    height: 200px;
+  }
+}

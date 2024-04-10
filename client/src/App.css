@@ -20,8 +20,8 @@ body {
 /* ----------------  VARIABLES  ----------------------- */
 
 :root {
-  --primary-color: red;
-  --secondary-color: black;
+  --primary-dark-color: rgba(32, 32, 32);
+  --primary-red-color: #e76e55;
   --large-bit-policy: "Press Start 2P", sans-serif;
   --small-bit-policy: "Micro 5", sans-serif;
   --other-bit-policy: "Workbench", sans-serif;
