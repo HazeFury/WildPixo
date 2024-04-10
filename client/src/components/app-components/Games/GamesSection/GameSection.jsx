@@ -1,5 +1,5 @@
 import PropTypes from "prop-types";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./GameSection.module.css";
 import GameCard from "../GameCard/GameCard";
 
@@ -15,12 +15,16 @@ function GameSection({ numberOfResults }) {
       .then((data) => setGames(data.results));
   };
 
+  useEffect(() => {
+    fetchGames();
+    // ne pas mettre fetchGames() dans le tableau de dépendance sous peine de déclencher une boucle infini
+    // on admet donc un eslint disable pour éviter un warning inutile ;)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <section className={styles.game_section_container}>
       <h1>Nos jeux préférés</h1>
-      <button type="button" className="nes-btn" onClick={fetchGames}>
-        charger les jeux
-      </button>
       <div className={styles.game_card_container}>
         {games.map((game) => (
           <GameCard key={game.id} gameData={game} />
