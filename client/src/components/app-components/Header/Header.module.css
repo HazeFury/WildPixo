@@ -1,0 +1,36 @@
+.header_container {
+  min-height: calc(100dvh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  text-align: center;
+  background: url("https://wallpaperaccess.com/full/2825704.gif") no-repeat
+    center;
+  background-size: cover;
+}
+
+.header_title {
+  font-size: 1rem;
+  margin-top: 20px;
+}
+.header_span {
+  font-size: 1rem;
+  color: rgb(255, 91, 91);
+  font-weight: bold;
+  font-size: 1.6rem;
+  background-color: white;
+  padding: 10px;
+  box-shadow: 3px 3px 0px 2px rgb(255, 91, 91);
+}
+
+.header_container button {
+  margin-top: 20px;
+}
+
+@media screen and (min-width: 1000px) {
+  .header_title,
+  .header_span {
+    font-size: 1.7rem;
+  }
+}
