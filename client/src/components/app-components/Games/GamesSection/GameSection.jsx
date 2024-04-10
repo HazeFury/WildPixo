@@ -7,7 +7,7 @@ function GameSection() {
   const [games, setGames] = useState([]);
 
   const fetchGames = () => {
-    fetch(`https://api.rawg.io/api/games?key=${ApiKey}&page_size=3`)
+    fetch(`https://api.rawg.io/api/games?key=${ApiKey}&page_size=4`)
       .then((response) => response.json())
       .then((data) => setGames(data.results));
   };
