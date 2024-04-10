@@ -1,5 +1,5 @@
 .nav_container {
-  background-color: rgba(32, 32, 32);
+  background-color: var(--primary-dark-color);
   height: 80px;
   display: flex;
   align-items: center;
@@ -36,7 +36,7 @@
 }
 
 .opened_menu_section {
-  background-color: #913f3f;
+  background-color: var(--primary-red-color);
   position: fixed;
   top: 80px;
   width: 100vw;
@@ -47,6 +47,7 @@
   align-items: center;
   flex-direction: column;
   padding: 10px 0;
+  z-index: 999;
   animation: pop-menu 0.2s linear;
 }
 

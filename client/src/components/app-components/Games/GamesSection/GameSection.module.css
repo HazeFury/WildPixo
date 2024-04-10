@@ -1,0 +1,13 @@
+.game_section_container {
+  min-height: 400px;
+  text-align: center;
+  padding-top: 20px;
+}
+
+.game_card_container {
+  padding: 20px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-wrap: wrap;
+}

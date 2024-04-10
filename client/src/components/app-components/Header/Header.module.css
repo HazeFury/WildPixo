@@ -16,11 +16,12 @@
 }
 .header_span {
   font-size: 1rem;
-  color: red;
+  color: rgb(255, 91, 91);
   font-weight: bold;
   font-size: 1.6rem;
   background-color: white;
   padding: 10px;
+  box-shadow: 3px 3px 0px 2px rgb(255, 91, 91);
 }
 
 .header_container button {
