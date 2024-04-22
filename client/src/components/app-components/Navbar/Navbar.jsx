@@ -66,7 +66,7 @@ function Navbar() {
             <NavLink className={styles.navlink_style} to="/about">
               <span className="nes-text is-error">À propos</span>
             </NavLink>
-            <NavLink className={styles.navlink_style} to="/">
+            <NavLink className={styles.navlink_style} to="/connexion">
               <button type="button" className="nes-btn is-violet">
                 <img
                   className={styles.nav_user_btn}
@@ -118,7 +118,7 @@ function Navbar() {
             </button>
           </Link>
           <div style={{ marginTop: 30, borderTop: "solid white 2px" }}>
-            <Link to="/">
+            <Link to="/connexion">
               <button
                 type="button"
                 className="nes-btn is-violet"
