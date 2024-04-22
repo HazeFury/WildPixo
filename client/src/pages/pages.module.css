@@ -1,0 +1,7 @@
+.section_container {
+  min-height: calc(85vh - 80px);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}

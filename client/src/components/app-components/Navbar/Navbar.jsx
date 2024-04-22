@@ -57,13 +57,13 @@ function Navbar() {
             <NavLink className={styles.navlink_style} to="/">
               <span className="nes-text is-blue">Accueil</span>
             </NavLink>
-            <NavLink className={styles.navlink_style} to="/">
+            <NavLink className={styles.navlink_style} to="/games">
               <span className="nes-text is-success">Jeux</span>
             </NavLink>
-            <NavLink className={styles.navlink_style} to="/">
+            <NavLink className={styles.navlink_style} to="/news">
               <span className="nes-text is-warning">Actualités</span>
             </NavLink>
-            <NavLink className={styles.navlink_style} to="/">
+            <NavLink className={styles.navlink_style} to="/about">
               <span className="nes-text is-error">À propos</span>
             </NavLink>
             <NavLink className={styles.navlink_style} to="/">
@@ -80,15 +80,17 @@ function Navbar() {
       </nav>
       {openMenu && onMobileFormat && (
         <section className={styles.opened_menu_section}>
-          <button
-            type="button"
-            className="nes-btn is-blue"
-            onClick={handleCloseMenu}
-          >
-            Accueil
-          </button>
-
           <Link to="/">
+            <button
+              type="button"
+              className="nes-btn is-blue"
+              onClick={handleCloseMenu}
+            >
+              Accueil
+            </button>
+          </Link>
+
+          <Link to="/games">
             <button
               type="button"
               className="nes-btn is-success"
@@ -97,7 +99,7 @@ function Navbar() {
               Jeux
             </button>
           </Link>
-          <Link to="/">
+          <Link to="/news">
             <button
               type="button"
               className="nes-btn is-warning"
@@ -106,7 +108,7 @@ function Navbar() {
               Actualités
             </button>
           </Link>
-          <Link to="/">
+          <Link to="/about">
             <button
               type="button"
               className="nes-btn is-error"
