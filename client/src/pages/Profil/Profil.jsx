@@ -7,6 +7,9 @@ function Profil() {
     <section className={pageStyle.section_container}>
       <div className={styles.profil_container}>
         <ProfilData />
+        <button type="button" className={`nes-btn is-red ${styles.logout_btn}`}>
+          Se déconnecter
+        </button>
       </div>
     </section>
   );

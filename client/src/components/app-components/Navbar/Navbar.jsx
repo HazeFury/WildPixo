@@ -32,15 +32,9 @@ function Navbar() {
     <>
       <nav className={styles.nav_container}>
         <Link className={styles.navlink_style} to="/">
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
+          <div className={styles.logo_and_title_container}>
             <img src={Logo} className={styles.img_logo} alt="Wild Pixo Logo" />
-            {screenSize > 600 && <h1 style={{ marginLeft: 15 }}>Wild Pixo</h1>}
+            {screenSize > 600 && <h1 className={styles.wp_title}>Wild Pixo</h1>}
           </div>
         </Link>
         {onMobileFormat && (

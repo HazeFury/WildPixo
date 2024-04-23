@@ -8,8 +8,21 @@
   padding: 0 5px;
 }
 
+.logo_and_title_container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px;
+}
+
+.wp_title {
+  margin-top: 15px;
+  margin-left: 15px;
+  font-size: 1rem;
+}
+
 .img_logo {
-  width: 70px;
+  width: 65px;
 }
 
 .nav_link_container {

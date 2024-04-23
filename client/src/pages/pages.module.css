@@ -1,5 +1,5 @@
 .section_container {
-  min-height: calc(90vh - 80px);
+  min-height: calc(100dvh - 80px);
   display: flex;
   justify-content: center;
   align-items: center;
