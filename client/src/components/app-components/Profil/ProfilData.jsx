@@ -1,7 +1,7 @@
 import styles from "./ProfilData.module.css";
 
 function ProfilData() {
-  const infoTest = {
+  const userInfo = {
     pseudo: "HazeFury",
     mail: "HazeFury@gmail.com",
   };
@@ -20,7 +20,7 @@ function ProfilData() {
             type="text"
             id="pseudo"
             className="nes-input"
-            value={infoTest.pseudo}
+            value={userInfo.pseudo}
           />
         </div>
         <div className="nes-field">
@@ -29,7 +29,7 @@ function ProfilData() {
             type="text"
             id="mail"
             className="nes-input"
-            value={infoTest.mail}
+            value={userInfo.mail}
           />
         </div>
       </div>
