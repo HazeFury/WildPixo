@@ -7,6 +7,7 @@ import Home from "./pages/Home/Home";
 import Games from "./pages/Games/Games";
 import News from "./pages/News/News";
 import About from "./pages/About/About";
+import Connexion from "./pages/Connexion/Connexion";
 
 const router = createBrowserRouter([
   {
@@ -27,6 +28,10 @@ const router = createBrowserRouter([
       {
         path: "/about",
         element: <About />,
+      },
+      {
+        path: "/connexion",
+        element: <Connexion />,
       },
     ],
   },
