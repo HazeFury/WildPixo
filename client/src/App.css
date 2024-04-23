@@ -11,6 +11,10 @@
   color: white;
 }
 
+input {
+  color: black;
+}
+
 body {
   background: rgb(0, 0, 0);
   background: linear-gradient(0deg, rgb(52, 34, 34) 0%, rgb(32, 32, 32) 95%);
