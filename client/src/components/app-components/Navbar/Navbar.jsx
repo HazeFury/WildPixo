@@ -2,7 +2,7 @@ import { Link, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
 import styles from "./Navbar.module.css";
 import useScreenSize from "../../../hooks/useScreenSize";
-import Logo from "../../../assets/images/logo-small.png";
+import Logo from "../../../assets/images/wp_logo.png";
 import Menu from "../../../assets/icons/menu.svg";
 import Close from "../../../assets/icons/close.svg";
 import User from "../../../assets/icons/users.png";
@@ -39,7 +39,7 @@ function Navbar() {
               justifyContent: "center",
             }}
           >
-            <img src={Logo} alt="Wild Pixo Logo" />
+            <img src={Logo} className={styles.img_logo} alt="Wild Pixo Logo" />
             {screenSize > 600 && <h1 style={{ marginLeft: 15 }}>Wild Pixo</h1>}
           </div>
         </Link>

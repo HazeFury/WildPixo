@@ -1,0 +1,6 @@
+.profil_container {
+  border: 1px solid #ca0808;
+  min-height: 400px;
+  height: fit-content;
+  width: 90vw;
+}
