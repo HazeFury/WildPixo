@@ -1,16 +1,15 @@
+import { useUserContext } from "../../../contexts/UserContext";
 import styles from "./ProfilData.module.css";
+// https://robohash.org/
 
 function ProfilData() {
-  const userInfo = {
-    pseudo: "HazeFury",
-    mail: "HazeFury@gmail.com",
-  };
+  const { currentUser } = useUserContext();
 
   return (
     <section className={styles.profil_data_container}>
       <img
         className={styles.profil_img}
-        src="https://robohash.org/HazeFury"
+        src={`https://robohash.org/${currentUser?.pseudo}`}
         alt="avatar logo"
       />
       <div>
@@ -20,7 +19,8 @@ function ProfilData() {
             type="text"
             id="pseudo"
             className="nes-input"
-            value={userInfo.pseudo}
+            value={currentUser?.pseudo}
+            readOnly
           />
         </div>
         <div className="nes-field">
@@ -29,7 +29,8 @@ function ProfilData() {
             type="text"
             id="mail"
             className="nes-input"
-            value={userInfo.mail}
+            value={currentUser?.mail}
+            readOnly
           />
         </div>
       </div>

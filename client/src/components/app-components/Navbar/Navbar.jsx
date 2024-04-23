@@ -1,5 +1,6 @@
 import { Link, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useUserContext } from "../../../contexts/UserContext";
 import styles from "./Navbar.module.css";
 import useScreenSize from "../../../hooks/useScreenSize";
 import Logo from "../../../assets/images/wp_logo.png";
@@ -9,6 +10,7 @@ import User from "../../../assets/icons/users.png";
 
 function Navbar() {
   const [openMenu, setOpenMenu] = useState(false);
+  const { currentUser } = useUserContext();
   const screenSize = useScreenSize();
   const onMobileFormat = screenSize <= 1124;
   const onDesktopFormat = screenSize > 1124;
@@ -60,7 +62,10 @@ function Navbar() {
             <NavLink className={styles.navlink_style} to="/about">
               <span className="nes-text is-error">À propos</span>
             </NavLink>
-            <NavLink className={styles.navlink_style} to="/connexion">
+            <NavLink
+              className={styles.navlink_style}
+              to={currentUser !== null ? "/profil" : "/connexion"}
+            >
               <button type="button" className="nes-btn is-violet">
                 <img
                   className={styles.nav_user_btn}
@@ -112,13 +117,13 @@ function Navbar() {
             </button>
           </Link>
           <div style={{ marginTop: 30, borderTop: "solid white 2px" }}>
-            <Link to="/connexion">
+            <Link to={currentUser !== null ? "/profil" : "/connexion"}>
               <button
                 type="button"
                 className="nes-btn is-violet"
                 onClick={handleCloseMenu}
               >
-                Se connecter
+                {currentUser !== null ? "Voir mon profil" : "Se connecter"}
               </button>
             </Link>
           </div>
