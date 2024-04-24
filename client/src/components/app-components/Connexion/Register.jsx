@@ -31,7 +31,7 @@ function Register({ switchToLogin }) {
   };
 
   return (
-    <form className={styles.login_container}>
+    <form className={styles.register_container}>
       <div className="nes-field">
         <label htmlFor="pseudo">Pseudo</label>
         <input

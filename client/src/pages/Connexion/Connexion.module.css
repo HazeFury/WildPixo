@@ -1,5 +1,6 @@
 .connexion_section {
-  min-height: 70dvh;
+  min-height: 400px;
+  margin: 0 auto;
   width: 90vw;
   min-width: 220px;
   max-width: 600px;
@@ -28,8 +29,9 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  height: fit-content;
   border-bottom: 5px solid var(--primary-red-color);
+  height: 100%;
+  overflow: hidden;
 }
 
 @media screen and (max-width: 285px) {

@@ -8,6 +8,7 @@ function Login() {
   const notifySuccess = (text) => toast.success(text);
   const notifyFail = (text) => toast.error(text);
   const navigate = useNavigate();
+
   const { setCurrentUser, userDatabase } = useUserContext();
   const [loginInfos, setLoginInfos] = useState({
     pseudo: "",

@@ -5,3 +5,31 @@
 .login_container > * {
   margin: 40px 0;
 }
+.register_container > * {
+  margin: 40px 0;
+}
+.login_container {
+  animation: login-openning 1s ease;
+}
+
+.register_container {
+  animation: register-openning 1s ease;
+}
+
+@keyframes register-openning {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 610px;
+  }
+}
+
+@keyframes login-openning {
+  from {
+    height: 0px;
+  }
+  to {
+    height: 370px;
+  }
+}
