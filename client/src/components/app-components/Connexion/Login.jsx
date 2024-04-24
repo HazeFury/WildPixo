@@ -1,9 +1,12 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import { useUserContext } from "../../../contexts/UserContext";
 import styles from "./Connexion.module.css";
 
 function Login() {
+  const notifySuccess = (text) => toast.success(text);
+  const notifyFail = (text) => toast.error(text);
   const navigate = useNavigate();
   const { setCurrentUser, userDatabase } = useUserContext();
   const [loginInfos, setLoginInfos] = useState({
@@ -22,6 +25,9 @@ function Login() {
     ) {
       setCurrentUser(userDatabase.registerForm);
       navigate("/");
+      notifySuccess(`Bienvenue ${userDatabase.registerForm.pseudo}`);
+    } else {
+      notifyFail("Une erreur s'est produite");
     }
   };
 

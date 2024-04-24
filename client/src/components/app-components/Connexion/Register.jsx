@@ -1,8 +1,12 @@
+import PropTypes from "prop-types";
 import { useState } from "react";
+import { toast } from "react-toastify";
 import { useUserContext } from "../../../contexts/UserContext";
 import styles from "./Connexion.module.css";
 
-function Register() {
+function Register({ switchToLogin }) {
+  const notifySuccess = (text) => toast.success(text);
+  const notifyFail = (text) => toast.error(text);
   const { userDatabase, setUserDatabase } = useUserContext();
   const [registerForm, setRegisterForm] = useState({
     pseudo: "",
@@ -19,6 +23,10 @@ function Register() {
     e.preventDefault();
     if (registerForm.password === registerForm.confirmPassword) {
       setUserDatabase({ ...userDatabase, registerForm });
+      notifySuccess("votre compte à bien été crée !");
+      switchToLogin();
+    } else {
+      notifyFail("Les mots de passe ne correspondent pas !");
     }
   };
 
@@ -77,5 +85,9 @@ function Register() {
     </form>
   );
 }
+
+Register.propTypes = {
+  switchToLogin: PropTypes.string.isRequired,
+};
 
 export default Register;

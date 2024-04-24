@@ -43,7 +43,11 @@ function Connexion() {
         </div>
 
         <div className={styles.connexion_content}>
-          {connexionType ? <Register /> : <Login />}
+          {connexionType ? (
+            <Register switchToLogin={handleChangetypeToFalse} />
+          ) : (
+            <Login />
+          )}
         </div>
       </section>
     </section>
