@@ -1,0 +1,11 @@
+.profil_container {
+  min-height: 400px;
+  height: fit-content;
+  width: 90vw;
+  max-width: 1000px;
+  text-align: center;
+}
+
+.logout_btn {
+  margin: 40px 0;
+}

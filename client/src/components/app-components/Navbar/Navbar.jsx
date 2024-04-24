@@ -1,14 +1,16 @@
 import { Link, NavLink } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { useUserContext } from "../../../contexts/UserContext";
 import styles from "./Navbar.module.css";
 import useScreenSize from "../../../hooks/useScreenSize";
-import Logo from "../../../assets/images/logo-small.png";
+import Logo from "../../../assets/images/wp_logo.png";
 import Menu from "../../../assets/icons/menu.svg";
 import Close from "../../../assets/icons/close.svg";
 import User from "../../../assets/icons/users.png";
 
 function Navbar() {
   const [openMenu, setOpenMenu] = useState(false);
+  const { currentUser } = useUserContext();
   const screenSize = useScreenSize();
   const onMobileFormat = screenSize <= 1124;
   const onDesktopFormat = screenSize > 1124;
@@ -32,15 +34,9 @@ function Navbar() {
     <>
       <nav className={styles.nav_container}>
         <Link className={styles.navlink_style} to="/">
-          <div
-            style={{
-              display: "flex",
-              alignItems: "center",
-              justifyContent: "center",
-            }}
-          >
-            <img src={Logo} alt="Wild Pixo Logo" />
-            {screenSize > 600 && <h1 style={{ marginLeft: 15 }}>Wild Pixo</h1>}
+          <div className={styles.logo_and_title_container}>
+            <img src={Logo} className={styles.img_logo} alt="Wild Pixo Logo" />
+            {screenSize > 600 && <h1 className={styles.wp_title}>Wild Pixo</h1>}
           </div>
         </Link>
         {onMobileFormat && (
@@ -66,7 +62,10 @@ function Navbar() {
             <NavLink className={styles.navlink_style} to="/about">
               <span className="nes-text is-error">À propos</span>
             </NavLink>
-            <NavLink className={styles.navlink_style} to="/">
+            <NavLink
+              className={styles.navlink_style}
+              to={currentUser !== null ? "/profil" : "/connexion"}
+            >
               <button type="button" className="nes-btn is-violet">
                 <img
                   className={styles.nav_user_btn}
@@ -118,13 +117,13 @@ function Navbar() {
             </button>
           </Link>
           <div style={{ marginTop: 30, borderTop: "solid white 2px" }}>
-            <Link to="/">
+            <Link to={currentUser !== null ? "/profil" : "/connexion"}>
               <button
                 type="button"
                 className="nes-btn is-violet"
                 onClick={handleCloseMenu}
               >
-                Se connecter
+                {currentUser !== null ? "Voir mon profil" : "Se connecter"}
               </button>
             </Link>
           </div>
