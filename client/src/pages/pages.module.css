@@ -5,3 +5,6 @@
   align-items: center;
   flex-direction: column;
 }
+.section_container_alt {
+  min-height: calc(100dvh - 80px);
+}

@@ -17,7 +17,7 @@ function Connexion() {
   };
 
   return (
-    <section className={pageStyles.section_container}>
+    <section className={pageStyles.section_container_alt}>
       <section className={styles.connexion_section}>
         <div className={styles.connexion_header}>
           <label>
@@ -43,7 +43,11 @@ function Connexion() {
         </div>
 
         <div className={styles.connexion_content}>
-          {connexionType ? <Register /> : <Login />}
+          {connexionType ? (
+            <Register switchToLogin={handleChangetypeToFalse} />
+          ) : (
+            <Login />
+          )}
         </div>
       </section>
     </section>
