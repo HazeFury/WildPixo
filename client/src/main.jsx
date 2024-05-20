@@ -9,6 +9,8 @@ import News from "./pages/News/News";
 import About from "./pages/About/About";
 import Connexion from "./pages/Connexion/Connexion";
 import Profil from "./pages/Profil/Profil";
+import NewsById from "./pages/News/NewsById/NewsById";
+import GameById from "./pages/Games/GameById/GameById";
 
 const router = createBrowserRouter([
   {
@@ -23,8 +25,16 @@ const router = createBrowserRouter([
         element: <Games />,
       },
       {
+        path: "/game/:slug",
+        element: <GameById />,
+      },
+      {
         path: "/news",
         element: <News />,
+      },
+      {
+        path: "/news/:id",
+        element: <NewsById />,
       },
       {
         path: "/about",

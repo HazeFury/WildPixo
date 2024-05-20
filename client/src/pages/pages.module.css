@@ -8,3 +8,7 @@
 .section_container_alt {
   min-height: calc(100dvh - 80px);
 }
+
+.section_container h1 {
+  color: var(--primary-red-color);
+}
