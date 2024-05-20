@@ -2,7 +2,7 @@
 /* go to https://css-loaders.com/spinner/ to get more animations */
 
 .loader {
-  width: 50px;
+  width: 100px;
   aspect-ratio: 1;
   color: var(--primary-red-color);
   border-radius: 50%;

@@ -40,6 +40,10 @@
   font-family: var(--other-bit-policy);
 }
 
+.btn_box {
+  margin: 10px 0;
+}
+
 @media screen and (min-width: 500px) {
   .game_card_img {
     width: 100%;

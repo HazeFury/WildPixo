@@ -1,4 +1,6 @@
 import PropTypes from "prop-types";
+import { Link } from "react-router-dom";
+import scrollToTop from "../../../../utils/scrollToTop";
 import styles from "./GameCard.module.css";
 
 function GameCard({ gameData }) {
@@ -28,6 +30,17 @@ function GameCard({ gameData }) {
           {gameData.rating} / {gameData.rating_top}
         </p>
       </div>
+      <div className={styles.btn_box}>
+        <Link to={`/game/${gameData.slug}`}>
+          <button
+            type="button"
+            onClick={scrollToTop}
+            className="nes-btn is-orange"
+          >
+            Voir
+          </button>
+        </Link>
+      </div>
     </figure>
   );
 }
@@ -36,6 +49,7 @@ GameCard.propTypes = {
   gameData: PropTypes.shape({
     background_image: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
+    slug: PropTypes.string.isRequired,
     released: PropTypes.string.isRequired,
     rating: PropTypes.number.isRequired,
     rating_top: PropTypes.number.isRequired,

@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import styles from "./Header.module.css";
 
 function Header() {
@@ -8,11 +9,12 @@ function Header() {
 
       <p className={styles.header_title}>Nous codons des </p>
       <span className={styles.header_span}>jeux-vidéos</span>
-
-      <button type="button" className="nes-btn is-red toto">
-        Découvrir <br />
-        nos créations
-      </button>
+      <Link to="/games">
+        <button type="button" className="nes-btn is-red toto">
+          Découvrir <br />
+          nos créations
+        </button>
+      </Link>
     </header>
   );
 }
