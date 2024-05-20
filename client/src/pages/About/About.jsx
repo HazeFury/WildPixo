@@ -1,8 +1,7 @@
 import pageStyles from "../pages.module.css";
 import styles from "./About.module.css";
-import Marco from "../../assets/images/marco.png";
-// import Matthieu from "../../assets/images/matthieu.png";
-// import Vivien from "../../assets/images/vivien.png";
+import AboutCard from "./AboutCard";
+import aboutWildPixoMembers from "./AboutData";
 
 function About() {
   return (
@@ -20,18 +19,10 @@ function About() {
         </p>
         <h2>Notre équipe</h2>
       </div>
-      <article className={styles.article_container}>
-        <div>
-          <img className={styles.article_img} src={Marco} alt="Marco" />
-          <h4>HazeFury</h4>
-          <p>développeur web</p>
-        </div>
-        <p>
-          "Lorem, ipsum dolor sit amet consectetur adipisicing elit.
-          Exercitationem, dignissimos. Magni quo tempora similique amet ex unde
-          possimus illo illum!"
-        </p>
-      </article>
+      {aboutWildPixoMembers.length > 0 &&
+        aboutWildPixoMembers.map((member) => (
+          <AboutCard key={member.id} data={member} isLeft={member.id % 2} />
+        ))}
     </section>
   );
 }
