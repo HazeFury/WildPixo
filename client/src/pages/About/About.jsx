@@ -1,6 +1,6 @@
 import pageStyles from "../pages.module.css";
 import styles from "./About.module.css";
-import AboutCard from "./AboutCard";
+import AboutCard from "../../components/app-components/About/AboutCard";
 import aboutWildPixoMembers from "./AboutData";
 
 function About() {
