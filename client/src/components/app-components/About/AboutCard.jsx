@@ -21,7 +21,7 @@ function AboutCard({ data, isLeft }) {
 }
 
 AboutCard.propTypes = {
-  isLeft: PropTypes.bool.isRequired,
+  isLeft: PropTypes.number.isRequired,
   data: PropTypes.shape({
     profilePicture: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,

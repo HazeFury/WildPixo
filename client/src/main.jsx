@@ -9,6 +9,7 @@ import News from "./pages/News/News";
 import About from "./pages/About/About";
 import Connexion from "./pages/Connexion/Connexion";
 import Profil from "./pages/Profil/Profil";
+import NewsById from "./pages/News/NewsById/NewsById";
 
 const router = createBrowserRouter([
   {
@@ -25,6 +26,10 @@ const router = createBrowserRouter([
       {
         path: "/news",
         element: <News />,
+      },
+      {
+        path: "/news/:id",
+        element: <NewsById />,
       },
       {
         path: "/about",

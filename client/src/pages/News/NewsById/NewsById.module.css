@@ -1,0 +1,56 @@
+.news_by_id_container {
+  padding-bottom: 100px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.news_by_id_header_box {
+  height: 200px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.news_by_id_header {
+  background-image: url("https://media.rawg.io/media/games/4be/4be6a6ad0364751a96229c56bf69be59.jpg");
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+  height: 200px;
+  width: 100%;
+  max-width: 1300px;
+  margin: 0 auto;
+}
+
+.news_by_id_box {
+  min-height: 40dvh;
+}
+
+.box_title {
+  color: var(--primary-red-color);
+}
+
+.box_created_date {
+  opacity: 0.7;
+  font-size: 0.8rem;
+}
+
+.box_content {
+  font-size: 1.1rem;
+  font-family: var(--other-bit-policy);
+}
+
+@media screen and (min-width: 600px) {
+  .news_by_id_header,
+  .news_by_id_header_box {
+    height: 400px;
+  }
+}
+
+@media screen and (min-width: 900px) {
+  .news_by_id_header,
+  .news_by_id_header_box {
+    height: 500px;
+  }
+}
