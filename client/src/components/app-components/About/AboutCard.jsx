@@ -13,7 +13,7 @@ function AboutCard({ data, isLeft }) {
           alt={data.name}
         />
         <h4 className={styles.name}>{data.name}</h4>
-        <p className={styles.job}>{data.job} web</p>
+        <p className={styles.job}>{data.job}</p>
       </div>
       <p className={styles.about_text}>{data.aboutText}</p>
     </article>
