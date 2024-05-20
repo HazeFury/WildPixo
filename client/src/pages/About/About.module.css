@@ -1,0 +1,31 @@
+.about_container {
+  text-align: center;
+}
+
+.about_container h1,
+.about_container h2 {
+  margin: 40px auto;
+}
+
+.about_container p {
+  font-size: 0.7rem;
+  margin: 0 20px;
+}
+
+.article_container {
+  border: 1px solid #9cf808;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+@media screen and (min-width: 900px) {
+  .about_container {
+    flex-direction: row;
+  }
+  .about_container p {
+    font-size: 0.7rem;
+    margin: 0 80px;
+  }
+}
