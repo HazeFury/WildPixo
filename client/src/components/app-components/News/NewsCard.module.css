@@ -1,0 +1,33 @@
+.news_card_container {
+  border: 2px solid var(--primary-red-color);
+  margin: 15px 40px;
+  padding: 10px 10px;
+  max-width: 1000px;
+}
+
+.news_card_date {
+  opacity: 0.8;
+  font-style: italic;
+  font-size: 0.7rem;
+}
+
+.news_card_title {
+  font-size: 1.2rem;
+  color: var(--primary-red-color);
+}
+
+.news_card_intro {
+  font-family: var(--other-bit-policy);
+}
+
+.news_card_btn_box {
+  display: flex;
+  flex-direction: row-reverse;
+  padding-right: 10px;
+}
+
+@media screen and (min-width: 930px) {
+  .news_card_container {
+    width: 900px;
+  }
+}

@@ -75,3 +75,17 @@
 .is-blue {
   color: var(--primary-normal-color);
 }
+
+.nes-container.is-dark {
+  margin: 15px 40px;
+}
+.nes-container.is-dark.up {
+  margin: -40px 20px 20px 20px;
+  max-width: 1200px;
+}
+
+@media screen and (min-width: 600px) {
+  .nes-container.is-dark.up {
+    margin: -80px 20px 20px 20px;
+  }
+}

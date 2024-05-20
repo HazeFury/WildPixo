@@ -5,6 +5,7 @@
 .about_container h1,
 .about_container h2 {
   margin: 40px auto;
+  color: var(--primary-red-color);
 }
 
 .about_container p {
@@ -25,7 +26,7 @@
     flex-direction: row;
   }
   .about_container p {
-    font-size: 0.7rem;
+    font-size: 0.8rem;
     margin: 0 80px;
   }
 }
