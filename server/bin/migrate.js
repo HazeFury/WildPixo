@@ -43,6 +43,7 @@ const migrate = async () => {
     database.end();
 
     console.info(`${DB_NAME} updated from '${path.normalize(schema)}' 🆙`);
+    console.info(`${DB_NAME} has been reseted successfully ✅`);
   } catch (err) {
     console.error("Error updating the database:", err.message, err.stack);
   }

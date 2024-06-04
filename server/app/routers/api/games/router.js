@@ -13,7 +13,7 @@ const { browse, read, add } = require("../../../controllers/gameActions");
 router.get("/", browse);
 
 // Route to get a specific item by ID
-router.get("/:id", read);
+router.get("/:slug", read);
 
 // Route to add a new item
 router.post("/", add);
