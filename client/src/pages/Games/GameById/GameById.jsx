@@ -11,6 +11,7 @@ function GameById() {
   const [isLoading, setIsLoading] = useState(true);
   const [game, setGame] = useState([]);
 
+
   const fetchGame = () => {
     fetch(`${ApiUrl}/games/${slug}`)
       .then((response) => response.json())
@@ -48,7 +49,7 @@ function GameById() {
         <RatingStars score={80 + Math.floor(Math.random() * 20)} />
         <p className={styles.box_intro}> {game.intro_text}</p>
         <p className={styles.box_created_date}>
-          Publié le {game.release_date} par {game.publisher}
+          Publié le {game.release_date.slice(0, 10)} par {game.publisher}
         </p>
         <p className={styles.box_content}>{game.description}</p>
         <div className={styles.center}>

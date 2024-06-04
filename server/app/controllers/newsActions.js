@@ -5,7 +5,7 @@ const tables = require("../../database/tables");
 const browse = async (req, res, next) => {
   try {
     // Fetch all items from the database
-    const items = await tables.game.readAll();
+    const items = await tables.news.readAll();
 
     // Respond with the items in JSON format
     res.json(items);
@@ -19,7 +19,7 @@ const browse = async (req, res, next) => {
 const read = async (req, res, next) => {
   try {
     // Fetch a specific item from the database based on the provided ID
-    const item = await tables.game.read(req.params.slug);
+    const item = await tables.news.read(req.params.id);
 
     // If the item is not found, respond with HTTP 404 (Not Found)
     // Otherwise, respond with the item in JSON format
@@ -44,7 +44,7 @@ const add = async (req, res, next) => {
 
   try {
     // Insert the item into the database
-    const insertId = await tables.game.create(item);
+    const insertId = await tables.news.create(item);
 
     // Respond with HTTP 201 (Created) and the ID of the newly inserted item
     res.status(201).json({ insertId });

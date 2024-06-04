@@ -1,10 +1,10 @@
 const AbstractRepository = require("./AbstractRepository");
 
-class GameRepository extends AbstractRepository {
+class ItemRepository extends AbstractRepository {
   constructor() {
     // Call the constructor of the parent class (AbstractRepository)
     // and pass the table name "item" as configuration
-    super({ table: "game" });
+    super({ table: "item" });
   }
 
   // The C of CRUD - Create operation
@@ -56,4 +56,4 @@ class GameRepository extends AbstractRepository {
   // }
 }
 
-module.exports = GameRepository;
+module.exports = ItemRepository;

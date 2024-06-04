@@ -1,10 +1,10 @@
 const AbstractRepository = require("./AbstractRepository");
 
-class GameRepository extends AbstractRepository {
+class NewsRepository extends AbstractRepository {
   constructor() {
     // Call the constructor of the parent class (AbstractRepository)
     // and pass the table name "item" as configuration
-    super({ table: "game" });
+    super({ table: "news" });
   }
 
   // The C of CRUD - Create operation
@@ -22,11 +22,11 @@ class GameRepository extends AbstractRepository {
 
   // The Rs of CRUD - Read operations
 
-  async read(slug) {
+  async read(id) {
     // Execute the SQL SELECT query to retrieve a specific game by its ID
     const [rows] = await this.database.query(
-      `select * from ${this.table} where slug = ?`,
-      [slug]
+      `select * from ${this.table} where id = ?`,
+      [id]
     );
 
     // Return the first row of the result, which represents the item
@@ -56,4 +56,4 @@ class GameRepository extends AbstractRepository {
   // }
 }
 
-module.exports = GameRepository;
+module.exports = NewsRepository;
