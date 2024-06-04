@@ -1,26 +1,12 @@
-use actix_web::{get, web, Result, Responder};
-use serde::Serialize;
 extern crate dotenv;
+
+mod routing;
 
 use dotenv::dotenv;
 use std::env;
 
-#[derive(Serialize)]
-struct Game {
-    title: String,
-    rate: u8
-}
-
-#[get("/")]
-async fn json() -> Result<impl Responder> {
-
-    let coquette_league = Game{ 
-        title: "Coquette League".to_string(), 
-        rate: 5 
-    };
-
-    Ok(web::Json(coquette_league))
-}
+#[macro_use]
+mod macros;
 
 #[actix_web::main]
 async fn main() -> std::io::Result<()> {
@@ -40,7 +26,8 @@ async fn main() -> std::io::Result<()> {
 
     HttpServer::new(|| {
         App::new()
-            .service(json)
+            .service(routing::article::scope()) // "/articles/..."
+            .service(routing::game::scope()) // "/games/..."
     })
     .bind(("127.0.0.1", port))?
     .run()
