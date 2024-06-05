@@ -5,7 +5,7 @@ const fs = require("node:fs");
 const path = require("node:path");
 
 // Build the path to the schema SQL file
-const schema = path.join(__dirname, "..", "database", "schema.sql");
+const schema = path.join(__dirname, "..", "database", "seed.sql");
 
 // Get database connection details from .env file
 const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
@@ -13,7 +13,7 @@ const { DB_HOST, DB_PORT, DB_USER, DB_PASSWORD, DB_NAME } = process.env;
 // Update the database schema
 const mysql = require("mysql2/promise");
 
-const migrate = async () => {
+const customSeed = async () => {
   try {
     // Read the SQL statements from the schema file
     const sql = fs.readFileSync(schema, "utf8");
@@ -27,12 +27,6 @@ const migrate = async () => {
       multipleStatements: true, // Allow multiple SQL statements
     });
 
-    // Drop the existing database if it exists
-    await database.query(`drop database if exists ${DB_NAME}`);
-
-    // Create a new database with the specified name
-    await database.query(`create database ${DB_NAME}`);
-
     // Switch to the newly created database
     await database.query(`use ${DB_NAME}`);
 
@@ -43,11 +37,11 @@ const migrate = async () => {
     database.end();
 
     console.info(`${DB_NAME} updated from '${path.normalize(schema)}' 🆙`);
-    console.info(`${DB_NAME} has been reseted successfully ✅`);
+    console.info(`${DB_NAME} has been seeded successfully ✅`)
   } catch (err) {
     console.error("Error updating the database:", err.message, err.stack);
   }
 };
 
 // Run the migration function
-migrate();
+customSeed();

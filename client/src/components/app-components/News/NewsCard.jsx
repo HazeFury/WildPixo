@@ -8,9 +8,9 @@ function NewsCard({ data }) {
     <article
       className={`${styles.news_card_container} ${"nes-container is-dark"}`}
     >
-      <p className={styles.news_card_date}>{data.creation_date}</p>
+      <p className={styles.news_card_date}>{data.date.slice(0, 10)}</p>
       <h4 className={styles.news_card_title}>{data.title}</h4>
-      <p className={styles.news_card_intro}>{data.intro_text}</p>
+      <p className={styles.news_card_intro}>{data.intro}</p>
       <div className={styles.news_card_btn_box}>
         <Link to={`/news/${data.id}`}>
           <button
@@ -28,10 +28,10 @@ function NewsCard({ data }) {
 
 NewsCard.propTypes = {
   data: PropTypes.shape({
-    id: PropTypes.string.isRequired,
-    creation_date: PropTypes.string.isRequired,
+    id: PropTypes.number.isRequired,
+    date: PropTypes.string.isRequired,
     title: PropTypes.string.isRequired,
-    intro_text: PropTypes.string.isRequired,
+    intro: PropTypes.string.isRequired,
   }).isRequired,
 };
 

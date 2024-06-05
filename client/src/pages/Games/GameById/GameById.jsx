@@ -7,12 +7,13 @@ import scrollToTop from "../../../utils/scrollToTop";
 
 function GameById() {
   const { slug } = useParams();
-  const ApiKey = import.meta.env.VITE_GAMES_API_KEY;
+  const ApiUrl = import.meta.env.VITE_API_URL;
   const [isLoading, setIsLoading] = useState(true);
   const [game, setGame] = useState([]);
 
+
   const fetchGame = () => {
-    fetch(`https://api.rawg.io/api/games/${slug}?key=${ApiKey}`)
+    fetch(`${ApiUrl}/games/${slug}`)
       .then((response) => response.json())
       .then((data) => setGame(data))
       .finally(() => setIsLoading(false));
@@ -37,7 +38,7 @@ function GameById() {
         <header
           className={styles.news_by_id_header}
           style={{
-            backgroundImage: `url('${game.background_image}')`,
+            backgroundImage: `url('${game.picture}')`,
           }}
         />
       </div>
@@ -45,12 +46,12 @@ function GameById() {
         className={`${styles.news_by_id_box} ${"nes-container is-dark up"}`}
       >
         <h3 className={styles.box_title}>{game.name}</h3>
-        <RatingStars score={game.metacritic} />
+        <RatingStars score={80 + Math.floor(Math.random() * 20)} />
         <p className={styles.box_intro}> {game.intro_text}</p>
         <p className={styles.box_created_date}>
-          Publié le {game.released} par {game.developers[0].name}
+          Publié le {game.release_date.slice(0, 10)} par {game.publisher}
         </p>
-        <p className={styles.box_content}>{game.description_raw}</p>
+        <p className={styles.box_content}>{game.description}</p>
         <div className={styles.center}>
           <Link to="/games">
             <button

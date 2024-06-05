@@ -1,3 +1,11 @@
+.section_container {
+  min-height: calc(100dvh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
 .news_by_id_container {
   padding-bottom: 100px;
   display: flex;
@@ -39,6 +47,16 @@
 .box_content {
   font-size: 1.1rem;
   font-family: var(--other-bit-policy);
+}
+
+.test {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.news_by_id_box button {
+  margin: 40px auto 20px auto;
 }
 
 @media screen and (min-width: 600px) {

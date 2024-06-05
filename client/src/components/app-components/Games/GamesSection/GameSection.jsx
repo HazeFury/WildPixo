@@ -1,20 +1,17 @@
-import PropTypes from "prop-types";
 import { useState, useEffect } from "react";
 import styles from "./GameSection.module.css";
 import GameCard from "../GameCard/GameCard";
 import Loader from "../../../ui-components/Loader/Loader";
 
-function GameSection({ numberOfResults }) {
-  const ApiKey = import.meta.env.VITE_GAMES_API_KEY;
+function GameSection() {
+  const ApiUrl = import.meta.env.VITE_API_URL;
   const [isLoading, setIsLoading] = useState(true);
   const [games, setGames] = useState([]);
 
   const fetchGames = () => {
-    fetch(
-      `https://api.rawg.io/api/games?key=${ApiKey}&page_size=${numberOfResults}`
-    )
+    fetch(`${ApiUrl}/games`)
       .then((response) => response.json())
-      .then((data) => setGames(data.results))
+      .then((data) => setGames(data))
       .finally(() => setIsLoading(false));
   };
 
@@ -46,9 +43,5 @@ function GameSection({ numberOfResults }) {
     </section>
   );
 }
-
-GameSection.propTypes = {
-  numberOfResults: PropTypes.number.isRequired,
-};
 
 export default GameSection;
