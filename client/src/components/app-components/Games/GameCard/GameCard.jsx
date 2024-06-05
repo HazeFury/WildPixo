@@ -8,7 +8,7 @@ function GameCard({ gameData }) {
     <figure className={styles.game_card_box}>
       <img
         className={styles.game_card_img}
-        src={gameData.background_image}
+        src={gameData.picture}
         alt={gameData.name}
       />
       <h3
@@ -22,15 +22,15 @@ function GameCard({ gameData }) {
       </h3>
       <div className={styles.more_detail_card}>
         <p>date de sortie :</p>
-        <p>{gameData.released}</p>
+        <p>{gameData.release_date.slice(0,10)}</p>
       </div>
       <div className={styles.more_detail_card}>
         <p>notation :</p>
         <p>
-          {gameData.rating} / {gameData.rating_top}
+          {80 + Math.floor(Math.random() * 20)}
         </p>
       </div>
-      <div className={styles.btn_box}>
+      <div className={styles.btn_box}>  
         <Link to={`/game/${gameData.slug}`}>
           <button
             type="button"
@@ -47,12 +47,10 @@ function GameCard({ gameData }) {
 
 GameCard.propTypes = {
   gameData: PropTypes.shape({
-    background_image: PropTypes.string.isRequired,
+    picture: PropTypes.string.isRequired,
     name: PropTypes.string.isRequired,
     slug: PropTypes.string.isRequired,
-    released: PropTypes.string.isRequired,
-    rating: PropTypes.number.isRequired,
-    rating_top: PropTypes.number.isRequired,
+    release_date: PropTypes.string.isRequired,
   }).isRequired,
 };
 

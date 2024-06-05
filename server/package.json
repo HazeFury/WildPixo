@@ -4,11 +4,13 @@
     "dev": "nodemon --ignore ./database/fixtures index.js",
     "db:migrate": "node ./bin/migrate.js",
     "db:seed": "node ./bin/seed.js",
+    "db:custom-seed": "node ./bin/customSeed.js",
     "build": "node ./bin/migrate.js",
     "start": "node index.js",
     "test": "jest"
   },
   "dependencies": {
+    "cors": "^2.8.5",
     "dotenv": "^16.3.1",
     "express": "^4.18.2",
     "mysql2": "^3.6.5"
