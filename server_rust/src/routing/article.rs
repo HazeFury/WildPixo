@@ -44,3 +44,19 @@ async fn read(path: web::Path<usize>) -> impl Responder {
         HttpResponse::NotFound().finish()
     }
 }
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn test_get_all_articles() {
+        let articles = get_all_articles();
+        assert_eq!(articles.len(), 10);
+
+        for (i, article) in articles.iter().enumerate() {
+            assert_eq!(article.title, format!("Article {}", i + 1));
+            assert_eq!(article.content, format!("Contenu de l'article {}", i + 1));
+        }
+    }
+}

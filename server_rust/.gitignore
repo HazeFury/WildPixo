@@ -25,3 +25,4 @@ guide/build/
 # code coverage
 /lcov.info
 /codecov.json
+*.profraw

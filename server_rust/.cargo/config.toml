@@ -1,0 +1,3 @@
+[alias]
+ut = "test"
+utc = "llvm-cov"
