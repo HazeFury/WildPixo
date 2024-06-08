@@ -1,6 +1,20 @@
 use actix_web::{get, web, Responder, Scope, HttpResponse};
 use serde::Serialize;
 
+
+
+// use package BDD
+
+// fonction pour se co
+
+// rework de get_all_articles
+    // 
+
+
+
+
+// toussa faut l'envoyer a terme dans des fichiers "Modele" (MVC toussa)
+
 #[derive(Serialize)]
 struct Article {
     title: String,
@@ -19,6 +33,10 @@ fn get_all_articles() -> Vec<Article> {
     }
     articles
 }
+
+// toussa au dessus faut l'envoyer a terme dans des fichiers "Modele" (MVC toussa)
+// mais je vais d'abord test la co BDD par ici comme un vilain
+
 
 use crate::register_routes;
 
