@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import styles from "../pages.module.css";
 import NewsCard from "../../components/app-components/News/NewsCard";
 import Loader from "../../components/ui-components/Loader/Loader";
@@ -32,6 +33,11 @@ function News() {
   return (
     <section className={styles.section_container}>
       <h1>News</h1>
+      <Link to="/news/add">
+        <button type="button" className="nes-btn is-green">
+          Ajouter une news
+        </button>
+      </Link>
       {newsData && newsData.length > 0 ? (
         newsData.map((news) => <NewsCard key={news.id} data={news} />)
       ) : (
