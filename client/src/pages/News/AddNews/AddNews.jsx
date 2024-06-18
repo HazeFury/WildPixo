@@ -24,7 +24,6 @@ function AddNews() {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    console.info(newsForm);
     try {
       const response = await fetch(`${ApiUrl}/news/add`, {
         method: "POST",

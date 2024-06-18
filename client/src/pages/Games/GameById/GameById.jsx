@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import { useParams, Link } from "react-router-dom";
 import styles from "./GameById.module.css";
 import Loader from "../../../components/ui-components/Loader/Loader";
-import RatingStars from "../../../components/ui-components/Loader/RatingStars";
+import RatingStars from "../../../components/ui-components/RatingStars";
 import scrollToTop from "../../../utils/scrollToTop";
 
 function GameById() {
@@ -10,7 +10,6 @@ function GameById() {
   const ApiUrl = import.meta.env.VITE_API_URL;
   const [isLoading, setIsLoading] = useState(true);
   const [game, setGame] = useState([]);
-
 
   const fetchGame = () => {
     fetch(`${ApiUrl}/games/${slug}`)

@@ -1,5 +1,6 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import Modal from "../../ui-components/Modal/Modal";
 import scrollToTop from "../../../utils/scrollToTop";
 import styles from "./NewsCard.module.css";
 
@@ -21,6 +22,12 @@ function NewsCard({ data }) {
             Voir
           </button>
         </Link>
+        <Modal
+          openBtnText="Supprimer"
+          yesBtnText="Oui"
+          noBtnText="No"
+          descriptionText="Êtes-vous sûr de vouloir supprimer cette news."
+        />
       </div>
     </article>
   );
