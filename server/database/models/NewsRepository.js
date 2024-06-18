@@ -9,11 +9,13 @@ class NewsRepository extends AbstractRepository {
 
   // The C of CRUD - Create operation
 
-  async create(game) {
+  async create(news) {
     // Execute the SQL INSERT query to add a new game to the "item" table
+
+    const gameId = news.gameId ? news.gameId : null;
     const [result] = await this.database.query(
-      `insert into ${this.table} (title, user_id) values (?, ?)`,
-      [game.title, game.user_id]
+      `insert into ${this.table} (title, intro, content, date, game_id) values (?, ?, ?, ? ,?)`,
+      [news.title, news.intro, news.content, news.date, gameId]
     );
 
     // Return the ID of the newly inserted item
@@ -35,7 +37,9 @@ class NewsRepository extends AbstractRepository {
 
   async readAll() {
     // Execute the SQL SELECT query to retrieve all items from the "game" table
-    const [rows] = await this.database.query(`select * from ${this.table}`);
+    const [rows] = await this.database.query(
+      `select * from ${this.table} order by id desc`
+    );
 
     // Return the array of items
     return rows;
