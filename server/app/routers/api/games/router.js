@@ -8,12 +8,13 @@ const router = express.Router();
 
 // Import item-related actions
 const { browse, read, add } = require("../../../controllers/gameActions");
+const verifySlug = require("../../../services/middlewares/verifySlug");
 
 // Route to get a list of items
 router.get("/", browse);
 
 // Route to get a specific item by ID
-router.get("/:slug", read);
+router.get("/:slug", verifySlug, read);
 
 // Route to add a new item
 router.post("/", add);
