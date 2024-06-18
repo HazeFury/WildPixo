@@ -15,6 +15,7 @@
 .add_news_form {
   width: 80vw;
   min-width: 300px;
+  max-width: 1000px;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -1,8 +1,13 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
 import styles from "./AddNews.module.css";
 
 function AddNews() {
-  // const ApiUrl = import.meta.env.VITE_API_URL;
+  const ApiUrl = import.meta.env.VITE_API_URL;
+  const navigate = useNavigate();
+  const notifySuccess = (text) => toast.success(text);
+  const notifyFail = (text) => toast.error(text);
   const date = new Date();
   const formattedDate = date.toISOString().split("T")[0].replace(/-/g, "-");
 
@@ -17,9 +22,30 @@ function AddNews() {
     setNewsForm({ ...newsForm, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     console.info(newsForm);
+    try {
+      const response = await fetch(`${ApiUrl}/news/add`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(newsForm),
+      });
+
+      if (response.status === 201) {
+        const { insertId } = await response.json();
+        navigate(`/news/${insertId}`);
+        notifySuccess("l'opération a réussie");
+      }
+      else {
+        notifyFail("l'opération a échouée")
+      }
+    } catch (err) {
+      console.error(err);
+      notifyFail("Une erreur s'est produite");
+    }
   };
 
   return (
@@ -27,36 +53,36 @@ function AddNews() {
       <h1>Ajouter une news</h1>
       <form onSubmit={handleSubmit} className={styles.add_news_form}>
         <label htmlFor="title">
-          {" "}
-          Title
+          Titre
           <input
             type="text"
             name="title"
             id="title"
+            required
             value={newsForm.title}
             onChange={handleUpdateForm}
             className={styles.form_input}
           />
         </label>
         <label htmlFor="intro">
-          {" "}
           Intro
           <input
             type="text"
             name="intro"
             id="intro"
+            required
             value={newsForm.intro}
             onChange={handleUpdateForm}
             className={styles.form_input}
           />
         </label>
         <label htmlFor="content">
-          {" "}
-          Content
+          Contenu
           <textarea
             name="content"
             id="content"
             value={newsForm.content}
+            required
             onChange={handleUpdateForm}
           />
         </label>
