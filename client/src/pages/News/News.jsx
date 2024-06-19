@@ -8,6 +8,11 @@ function News() {
   const ApiUrl = import.meta.env.VITE_API_URL;
   const [isLoading, setIsLoading] = useState(true);
   const [newsData, setNewsData] = useState([]);
+  const [refreshData, setRefreshData] = useState(false);
+
+  const handleRefresh = () => {
+    setRefreshData(!refreshData);
+  };
 
   const fetchNews = () => {
     fetch(`${ApiUrl}/news`)
@@ -21,7 +26,7 @@ function News() {
     // ne pas mettre fetchGames() dans le tableau de dépendance sous peine de déclencher une boucle infini
     // on admet donc un eslint disable pour éviter un warning inutile ;)
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [refreshData]);
 
   if (isLoading === true) {
     return (
@@ -39,7 +44,9 @@ function News() {
         </button>
       </Link>
       {newsData && newsData.length > 0 ? (
-        newsData.map((news) => <NewsCard key={news.id} data={news} />)
+        newsData.map((news) => (
+          <NewsCard key={news.id} data={news} handleRefresh={handleRefresh} />
+        ))
       ) : (
         <p>Pas de news à afficher</p>
       )}
