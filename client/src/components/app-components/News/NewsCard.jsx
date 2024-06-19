@@ -1,9 +1,37 @@
 import { Link } from "react-router-dom";
 import PropTypes from "prop-types";
+import { toast } from "react-toastify";
+import Modal from "../../ui-components/Modal/Modal";
 import scrollToTop from "../../../utils/scrollToTop";
 import styles from "./NewsCard.module.css";
 
-function NewsCard({ data }) {
+function NewsCard({ data, handleRefresh }) {
+  const ApiUrl = import.meta.env.VITE_API_URL;
+  const { id } = data;
+  const notifySuccess = (text) => toast.success(text);
+  const notifyFail = (text) => toast.error(text);
+  const handleDelete = async () => {
+    try {
+      const response = await fetch(`${ApiUrl}/news/delete`, {
+        method: "DELETE",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({ id }),
+      });
+
+      if (response.status === 200) {
+        notifySuccess("L'opération a réussie");
+      } else {
+        notifyFail("L'opération a échouée");
+      }
+      handleRefresh(); // to refresh the data when the news has been deleted
+    } catch (err) {
+      console.error(err);
+      notifyFail("Une erreur s'est produite");
+    }
+  };
+
   return (
     <article
       className={`${styles.news_card_container} ${"nes-container is-dark"}`}
@@ -21,6 +49,14 @@ function NewsCard({ data }) {
             Voir
           </button>
         </Link>
+        <Modal
+          openBtnText="Supprimer"
+          openBtnColor="red"
+          yesBtnText="Oui"
+          noBtnText="Non"
+          descriptionText={`Êtes-vous sûr de vouloir supprimer la news : ${data.title}`}
+          action={handleDelete}
+        />
       </div>
     </article>
   );
@@ -33,6 +69,7 @@ NewsCard.propTypes = {
     title: PropTypes.string.isRequired,
     intro: PropTypes.string.isRequired,
   }).isRequired,
+  handleRefresh: PropTypes.func.isRequired,
 };
 
 export default NewsCard;
