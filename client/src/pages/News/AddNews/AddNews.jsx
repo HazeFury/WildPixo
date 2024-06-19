@@ -1,11 +1,16 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { useLocation, useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import styles from "./AddNews.module.css";
 
 function AddNews() {
   const ApiUrl = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
+  const location = useLocation();
+  const { id } = useParams();
+  const [editMode] = useState(location.pathname.startsWith("/news/edit"));
+  const [actualNews, setActualNews] = useState({});
+  const [isNewsToEdit, setIsNewsToEdit] = useState(false);
   const notifySuccess = (text) => toast.success(text);
   const notifyFail = (text) => toast.error(text);
   const date = new Date();
@@ -16,7 +21,27 @@ function AddNews() {
     intro: "",
     content: "",
     date: formattedDate,
+    id: "",
   });
+
+  useEffect(() => {
+    if (editMode === true) {
+      fetch(`${ApiUrl}/news/${id}`)
+        .then((response) => response.json())
+        .then((data) => setActualNews(data))
+        .then(() => setIsNewsToEdit(true));
+    }
+  }, [ApiUrl, editMode, id, location.pathname]);
+
+  useEffect(() => {
+    if (isNewsToEdit === true && Object.keys(actualNews).length > 0) {
+      newsForm.title = actualNews.title;
+      newsForm.intro = actualNews.intro;
+      newsForm.content = actualNews.content;
+      newsForm.date = actualNews.date.slice(0, 10);
+      newsForm.id = actualNews.id;
+    }
+  }, [isNewsToEdit, actualNews, newsForm]);
 
   const handleUpdateForm = (e) => {
     setNewsForm({ ...newsForm, [e.target.name]: e.target.value });
@@ -25,21 +50,26 @@ function AddNews() {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch(`${ApiUrl}/news/add`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify(newsForm),
-      });
+      const response = await fetch(
+        `${ApiUrl}/news/${editMode === true ? "edit" : "add"}`,
+        {
+          method: editMode === true ? "PATCH" : "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(newsForm),
+        }
+      );
 
       if (response.status === 201) {
         const { insertId } = await response.json();
         navigate(`/news/${insertId}`);
         notifySuccess("l'opération a réussie");
-      }
-      else {
-        notifyFail("l'opération a échouée")
+      } else if (response.status === 200) {
+        navigate(`/news`);
+        notifySuccess("l'opération a réussie");
+      } else {
+        notifyFail("l'opération a échouée");
       }
     } catch (err) {
       console.error(err);
