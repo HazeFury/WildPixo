@@ -46,8 +46,8 @@ class NewsRepository extends AbstractRepository {
   // The U of CRUD - Update operation
   async update(news) {
     const [result] = await this.database.query(
-      `update ${this.table} set ? where id = ?`,
-      [news, news.id]
+      `update ${this.table} SET title = ?, intro = ?, content = ?, date = ? where id = ?`,
+      [news.title, news.intro, news.content, news.date, news.id]
     );
 
     return result;

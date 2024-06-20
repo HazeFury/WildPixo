@@ -41,7 +41,8 @@ function AddNews() {
       newsForm.date = actualNews.date.slice(0, 10);
       newsForm.id = actualNews.id;
     }
-  }, [isNewsToEdit, actualNews, newsForm]);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isNewsToEdit, actualNews]);
 
   const handleUpdateForm = (e) => {
     setNewsForm({ ...newsForm, [e.target.name]: e.target.value });
