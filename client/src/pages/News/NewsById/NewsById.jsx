@@ -41,7 +41,7 @@ function NewsById() {
         <h3 className={styles.box_title}>{news.title}</h3>
         <p className={styles.box_intro}> {news.intro}</p>
         <p className={styles.box_created_date}>
-          Publié le {news.date.slice(0, 10)} par HazeFury
+          Publié le {news.date?.slice(0, 10)} par HazeFury
         </p>
         <p className={styles.box_content}>{news.content}</p>
         <div className={styles.test}>

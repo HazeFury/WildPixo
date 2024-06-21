@@ -8,7 +8,6 @@ class NewsRepository extends AbstractRepository {
   }
 
   // The C of CRUD - Create operation
-
   async create(news) {
     // Execute the SQL INSERT query to add a new game to the "item" table
 
@@ -23,7 +22,6 @@ class NewsRepository extends AbstractRepository {
   }
 
   // The Rs of CRUD - Read operations
-
   async read(id) {
     // Execute the SQL SELECT query to retrieve a specific game by its ID
     const [rows] = await this.database.query(
@@ -46,15 +44,16 @@ class NewsRepository extends AbstractRepository {
   }
 
   // The U of CRUD - Update operation
-  // TODO: Implement the update operation to modify an existing item
+  async update(news) {
+    const [result] = await this.database.query(
+      `update ${this.table} SET title = ?, intro = ?, content = ?, date = ? where id = ?`,
+      [news.title, news.intro, news.content, news.date, news.id]
+    );
 
-  // async update(item) {
-  //   ...
-  // }
+    return result;
+  }
 
   // The D of CRUD - Delete operation
-  // TODO: Implement the delete operation to remove an item by its ID
-
   async delete(id) {
     const [result] = await this.database.query(
       `delete from ${this.table} where id = ?`,

@@ -57,6 +57,15 @@ function NewsCard({ data, handleRefresh }) {
           descriptionText={`Êtes-vous sûr de vouloir supprimer la news : ${data.title}`}
           action={handleDelete}
         />
+        <Link to={`/news/edit/${data.id}`}>
+          <button
+            type="button"
+            onClick={scrollToTop}
+            className="nes-btn is-blue"
+          >
+            Modifier
+          </button>
+        </Link>
       </div>
     </article>
   );
