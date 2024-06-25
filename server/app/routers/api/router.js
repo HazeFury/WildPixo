@@ -9,10 +9,12 @@ const router = express.Router();
 const itemsRouter = require("./items/router");
 const gameRouter = require("./games/router");
 const newsRouter = require("./news/news");
+const authRouter = require('./auth/router')
 
 router.use("/items", itemsRouter);
 router.use("/games", gameRouter);
 router.use("/news", newsRouter);
+router.use("/user", authRouter);
 
 /* ************************************************************************* */
 
