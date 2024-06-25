@@ -5,12 +5,8 @@ const UserContext = createContext();
 
 export function UserProvider({ children }) {
   const [currentUser, setCurrentUser] = useState(null);
-  const [userDatabase, setUserDatabase] = useState([]);
 
-  const memo = useMemo(
-    () => ({ currentUser, setCurrentUser, userDatabase, setUserDatabase }),
-    [currentUser, userDatabase]
-  );
+  const memo = useMemo(() => ({ currentUser, setCurrentUser }), [currentUser]);
 
   return <UserContext.Provider value={memo}>{children}</UserContext.Provider>;
 }

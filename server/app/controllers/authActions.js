@@ -7,7 +7,7 @@ const tables = require("../../database/tables");
 const login = async (req, res, next) => {
   try {
     // Fetch a specific user from the database based on the provided email
-    const user = await tables.user.readByEmailWithPassword(req.body.email);
+    const user = await tables.user.readByEmailWithPassword(req.body.mail);
 
     if (user == null) {
       res.sendStatus(422);
