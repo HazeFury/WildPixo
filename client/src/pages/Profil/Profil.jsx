@@ -30,7 +30,7 @@ function Profil() {
   const getProfile = async () => {
     try {
       // Appel à l'API pour demander une connexion
-      const response = await fetch(`${ApiUrl}/profile`, {
+      const response = await fetch(`${ApiUrl}/user/profile`, {
         method: "get",
         headers: {
           "Content-Type": "application/json",

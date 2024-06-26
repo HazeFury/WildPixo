@@ -34,11 +34,11 @@ function Login() {
       // Redirection vers la page de connexion si la création réussit
       if (response.status === 200) {
         const user = await response.json();
-
+        
         setCurrentUser(true);
 
         navigate("/");
-        notifySuccess(`Bienvenue ${user.user.username}`);
+        notifySuccess(`Bienvenue ${user.username}`);
       } else {
         // Log des détails de la réponse en cas d'échec
         console.info(response);
