@@ -14,7 +14,7 @@ function Register({ switchToLogin }) {
     confirmPassword: "",
   });
 
-  const handleRegiserForm = (e) => {
+  const handleRegisterForm = (e) => {
     setRegisterForm({ ...registerForm, [e.target.name]: e.target.value });
   };
   const handleSubmitForm = async (event) => {
@@ -53,7 +53,7 @@ function Register({ switchToLogin }) {
           name="username"
           className="nes-input"
           value={registerForm.username}
-          onChange={handleRegiserForm}
+          onChange={handleRegisterForm}
         />
       </div>
       <div className="nes-field">
@@ -63,7 +63,7 @@ function Register({ switchToLogin }) {
           name="mail"
           className="nes-input"
           value={registerForm.mail}
-          onChange={handleRegiserForm}
+          onChange={handleRegisterForm}
         />
       </div>
 
@@ -74,7 +74,7 @@ function Register({ switchToLogin }) {
           name="password"
           className="nes-input"
           value={registerForm.password}
-          onChange={handleRegiserForm}
+          onChange={handleRegisterForm}
         />
       </div>
       <div className="nes-field">
@@ -84,7 +84,7 @@ function Register({ switchToLogin }) {
           name="confirmPassword"
           className="nes-input"
           value={registerForm.confirmPassword}
-          onChange={handleRegiserForm}
+          onChange={handleRegisterForm}
         />
       </div>
       <div className={styles.btn_box}>
