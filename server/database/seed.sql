@@ -67,12 +67,12 @@ NULL);
 
 
 -- Insertion des utilisateurs
-INSERT INTO user (username, mail, password, role)
+INSERT INTO user (username, mail, hashed_password, role)
 VALUES 
-('Marco', 'marco@example.com', 'password_hash_1', 'user'),
-('Matthieu', 'matthieu@example.com', 'password_hash_2', 'user'),
-('Vivien', 'vivien@example.com', 'password_hash_3', 'user'),
-('John', 'john@example.com', 'password_hash_4', 'user');
+('Marco', 'marco@gmail.com', '$argon2id$v=19$m=19456,t=2,p=1$Viuwviir0kzpQd5G6gppJQ$nXiajSNOSMWMgNOlPh/qjRJ+EL1OBMC/ECFzh9wKPGk', 'user'),
+('Matthieu', 'matthieu@example.com', '$argon2id$v=19$m=19456,t=2,p=1$Viuwviir0kzpQd5G6gppJQ$nXiajSNOSMWMgNOlPh/qjRJ+EL1OBMC/ECFzh9wKPGk', 'user'),
+('Vivien', 'vivien@example.com', '$argon2id$v=19$m=19456,t=2,p=1$Viuwviir0kzpQd5G6gppJQ$nXiajSNOSMWMgNOlPh/qjRJ+EL1OBMC/ECFzh9wKPGk', 'user'),
+('John', 'john@example.com', '$argon2id$v=19$m=19456,t=2,p=1$Viuwviir0kzpQd5G6gppJQ$nXiajSNOSMWMgNOlPh/qjRJ+EL1OBMC/ECFzh9wKPGk', 'user');
 
 
 

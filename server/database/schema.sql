@@ -13,8 +13,8 @@ CREATE TABLE game (
 CREATE TABLE user (
     id INT unsigned PRIMARY KEY AUTO_INCREMENT NOT NULL,
     username VARCHAR(30) NOT NULL,
-    mail VARCHAR(50) NOT NULL,
-    password VARCHAR(255) NOT NULL,
+    mail VARCHAR(50) UNIQUE NOT NULL,
+    hashed_password VARCHAR(255) NOT NULL,
 	role VARCHAR(20) DEFAULT 'user' NOT NULL
 
 );

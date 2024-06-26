@@ -9,7 +9,7 @@ function ProfilData() {
     <section className={styles.profil_data_container}>
       <img
         className={styles.profil_img}
-        src={`https://robohash.org/${currentUser?.pseudo}`}
+        src={`https://robohash.org/${currentUser?.user.username}`}
         alt="avatar logo"
       />
       <div>
@@ -19,7 +19,7 @@ function ProfilData() {
             type="text"
             id="pseudo"
             className="nes-input"
-            value={currentUser?.pseudo}
+            value={currentUser?.user.username}
             readOnly
           />
         </div>
@@ -29,7 +29,7 @@ function ProfilData() {
             type="text"
             id="mail"
             className="nes-input"
-            value={currentUser?.mail}
+            value={currentUser?.user.mail}
             readOnly
           />
         </div>
