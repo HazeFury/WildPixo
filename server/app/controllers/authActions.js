@@ -31,10 +31,14 @@ const login = async (req, res, next) => {
         }
       );
 
-      res.json({
-        token,
-        user,
-      });
+      res
+        .cookie("access_token", token, {
+          httpOnly: true,
+          sameSite: "Lax",
+          secure: process.env.NODE_ENV === "production",
+          maxAge: 60000,
+        })
+        .json(user.role);
     } else {
       res.sendStatus(422);
     }
@@ -44,6 +48,11 @@ const login = async (req, res, next) => {
   }
 };
 
+const logout = (req, res) => {
+  res.clearCookie("access_token").sendStatus(200);
+};
+
 module.exports = {
   login,
+  logout,
 };

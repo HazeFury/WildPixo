@@ -14,6 +14,10 @@ const {
   add,
   destroy,
 } = require("../../../controllers/newsActions");
+const {
+  verifyCookie,
+  verifyIsAdmin,
+} = require("../../../services/middlewares/auth");
 
 // Route to get a list of items
 router.get("/", browse);
@@ -22,13 +26,13 @@ router.get("/", browse);
 router.get("/:id", read);
 
 // Route to add a new item
-router.patch("/edit", edit);
+router.patch("/edit", verifyCookie, verifyIsAdmin, edit);
 
 // Route to add a new item
-router.post("/add", add);
+router.post("/add", verifyCookie, verifyIsAdmin, add);
 
 // Route to delete an item
-router.delete("/delete", destroy);
+router.delete("/delete", verifyCookie, verifyIsAdmin, destroy);
 
 /* ************************************************************************* */
 

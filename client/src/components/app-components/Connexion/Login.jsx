@@ -35,7 +35,7 @@ function Login() {
       if (response.status === 200) {
         const user = await response.json();
 
-        setCurrentUser(user);
+        setCurrentUser(true);
 
         navigate("/");
         notifySuccess(`Bienvenue ${user.user.username}`);

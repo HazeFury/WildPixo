@@ -1,6 +1,8 @@
 const argon2 = require("argon2");
 const jwt = require("jsonwebtoken");
 
+const tables = require("../../../database/tables");
+
 // Options de hachage (voir documentation : https://github.com/ranisalt/node-argon2/wiki/Options)
 // Recommandations **minimales** de l'OWASP : https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html
 const hashingOptions = {
@@ -31,35 +33,66 @@ const hashPassword = async (req, res, next) => {
   }
 };
 
-const verifyToken = (req, res, next) => {
+// const verifyToken = (req, res, next) => {
+//   try {
+//     // Vérifier la présence de l'en-tête "Authorization" dans la requête
+//     const authorizationHeader = req.get("Authorization");
+
+//     if (authorizationHeader == null) {
+//       throw new Error("Authorization header is missing");
+//     }
+
+//     // Vérifier que l'en-tête a la forme "Bearer <token>"
+//     const [type, token] = authorizationHeader.split(" ");
+
+//     if (type !== "Bearer") {
+//       throw new Error("Authorization header has not the 'Bearer' type");
+//     }
+
+//     // Vérifier la validité du token (son authenticité et sa date d'expériation)
+//     // En cas de succès, le payload est extrait et décodé
+//     req.auth = jwt.verify(token, process.env.APP_SECRET);
+
+//     next();
+//   } catch (err) {
+//     console.error(err);
+
+//     res.sendStatus(401);
+//   }
+// };
+
+const verifyCookie = (req, res, next) => {
   try {
-    // Vérifier la présence de l'en-tête "Authorization" dans la requête
-    const authorizationHeader = req.get("Authorization");
-
-    if (authorizationHeader == null) {
-      throw new Error("Authorization header is missing");
+    const token = req.cookies.access_token;
+    if (!token) {
+      return res.sendStatus(403);
     }
-
-    // Vérifier que l'en-tête a la forme "Bearer <token>"
-    const [type, token] = authorizationHeader.split(" ");
-
-    if (type !== "Bearer") {
-      throw new Error("Authorization header has not the 'Bearer' type");
-    }
-
-    // Vérifier la validité du token (son authenticité et sa date d'expériation)
-    // En cas de succès, le payload est extrait et décodé
     req.auth = jwt.verify(token, process.env.APP_SECRET);
 
-    next();
+    return next();
   } catch (err) {
-    console.error(err);
+    return res.sendStatus(401).send("il y eu une erreur");
+  }
+};
 
-    res.sendStatus(401);
+const verifyIsAdmin = async (req, res, next) => {
+  try {
+    const { sub } = req.auth;
+    const userRole = await tables.user.findUserRole(sub);
+    if (userRole !== "admin") {
+      return res
+        .sendStatus(403)
+        .json("Vous n'avez pas les droits pour effectuer cette action !");
+    }
+
+    return next();
+  } catch (err) {
+    return res.sendStatus(401).send("il y eu une erreur");
   }
 };
 
 module.exports = {
   hashPassword,
-  verifyToken,
+  verifyCookie,
+  verifyIsAdmin,
 };
