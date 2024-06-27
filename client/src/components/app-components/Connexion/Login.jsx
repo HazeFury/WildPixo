@@ -27,6 +27,7 @@ function Login() {
       // Appel à l'API pour demander une connexion
       const response = await fetch(`${ApiUrl}/user/login`, {
         method: "post",
+        credentials: "include", // envoyer / recevoir le cookie à chaque requête
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(loginInfos),
       });

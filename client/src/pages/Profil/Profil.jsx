@@ -10,12 +10,13 @@ import ProfilData from "../../components/app-components/Profil/ProfilData";
 function Profil() {
   const ApiUrl = import.meta.env.VITE_API_URL;
   const notifyInfo = (text) => toast.info(text);
-  const { setCurrentUser } = useUserContext();
+  const { logout, setCurrentUser, currentUser } = useUserContext();
   const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
 
   const handleLogout = () => {
+    logout();
     setCurrentUser(null);
     navigate("/");
     notifyInfo("À bientôt :)");
@@ -30,8 +31,8 @@ function Profil() {
   const getProfile = async () => {
     try {
       // Appel à l'API pour demander une connexion
-      const response = await fetch(`${ApiUrl}/profile`, {
-        credentials: "include", // envoyer le cookie à chaque requête
+      const response = await fetch(`${ApiUrl}/user/profile`, {
+        credentials: "include", // envoyer / recevoir le cookie à chaque requête
         headers: {
           "Content-Type": "application/json",
 
@@ -44,12 +45,13 @@ function Profil() {
         // console.log("la réponse à la requête est :", data);
         setIsLoading(false);
         setUserData(data);
-      } else if (response.status === 403) {
+      } else if (response.status !== 200) {
         console.error(response);
         navigate("/login");
       } else {
         // Log des détails de la réponse en cas d'échec
 
+        navigate("/login");
         console.info(response);
       }
     } catch (err) {
@@ -59,7 +61,11 @@ function Profil() {
   };
 
   useEffect(() => {
-    getProfile();
+    if (currentUser !== null) {
+      getProfile();
+    } else {
+      navigate("/login");
+    }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
