@@ -7,21 +7,24 @@ const router = express.Router();
 /* ************************************************************************* */
 
 // Import auth-related actions
-const { login } = require("../../../controllers/authActions");
-const { add, read } = require("../../../controllers/userActions");
+const { login, logout } = require("../../../controllers/authActions");
+const { add, getProfile } = require("../../../controllers/userActions");
 const {
   hashPassword,
   verifyCookie,
 } = require("../../../services/middlewares/auth");
 
-// Route to add a new item
+// Route to login the user
 router.post("/login", login);
 
-// Route to add a new item
+// Route to logout the user
+router.get("/logout", logout);
+
+// Route to add a new user
 router.post("/register", hashPassword, add);
 
 // Route to get user profile
-router.get("/profile", verifyCookie, read);
+router.get("/profile", verifyCookie, getProfile);
 
 /* ************************************************************************* */
 

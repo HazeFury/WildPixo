@@ -31,13 +31,12 @@ function Profil() {
     try {
       // Appel à l'API pour demander une connexion
       const response = await fetch(`${ApiUrl}/profile`, {
-        method: "get",
+        credentials: "include", // envoyer le cookie à chaque requête
         headers: {
           "Content-Type": "application/json",
 
           // Authorization: `Bearer ${token}`,  // Inclusion du jeton JWT (ancienne version)
         },
-        credentials: "include", // envoyer le cookie à chaque requête
       });
 
       if (response.status === 200) {

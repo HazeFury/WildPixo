@@ -38,7 +38,7 @@ const login = async (req, res, next) => {
           secure: process.env.NODE_ENV === "production",
           maxAge: 60000,
         })
-        .json(user.role);
+        .json({ user });
     } else {
       res.sendStatus(422);
     }
