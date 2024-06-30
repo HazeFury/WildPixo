@@ -14,6 +14,7 @@ function NewsCard({ data, handleRefresh }) {
     try {
       const response = await fetch(`${ApiUrl}/news/delete`, {
         method: "DELETE",
+        credentials: "include", // envoyer / recevoir le cookie à chaque requête
         headers: {
           "Content-Type": "application/json",
         },

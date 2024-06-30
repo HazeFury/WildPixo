@@ -36,9 +36,9 @@ const login = async (req, res, next) => {
           httpOnly: true,
           sameSite: "Lax",
           secure: process.env.NODE_ENV === "production",
-          maxAge: 60000,
+          maxAge: 3600000,
         })
-        .json(user);
+        .json({ user });
     } else {
       res.sendStatus(422);
     }

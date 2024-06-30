@@ -79,9 +79,9 @@ const verifyIsAdmin = async (req, res, next) => {
   try {
     const { sub } = req.auth;
     const userRole = await tables.user.findUserRole(sub);
-    if (userRole !== "admin") {
+    if (userRole.role !== "admin") {
       return res
-        .sendStatus(403)
+        .status(403)
         .json("Vous n'avez pas les droits pour effectuer cette action !");
     }
 
