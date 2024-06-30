@@ -10,49 +10,34 @@ import ProfilData from "../../components/app-components/Profil/ProfilData";
 function Profil() {
   const ApiUrl = import.meta.env.VITE_API_URL;
   const notifyInfo = (text) => toast.info(text);
-  const { logout, setCurrentUser, currentUser } = useUserContext();
   const [isLoading, setIsLoading] = useState(true);
   const [userData, setUserData] = useState(null);
   const navigate = useNavigate();
 
+  const { user, logout } = useUserContext();
+
   const handleLogout = () => {
-    logout();
-    setCurrentUser(null);
-    navigate("/");
+    logout(false);
     notifyInfo("À bientôt :)");
   };
 
-  // useEffect(() => {
-  //   if (currentUser === null) {
-  //     navigate("/connexion");
-  //   }
-  // }, [currentUser, navigate]);
-
   const getProfile = async () => {
     try {
-      // Appel à l'API pour demander une connexion
-      const response = await fetch(`${ApiUrl}/user/user/profile`, {
-        credentials: "include", // envoyer / recevoir le cookie à chaque requête
+      const response = await fetch(`${ApiUrl}/user/profile`, {
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
-
-          // Authorization: `Bearer ${token}`,  // Inclusion du jeton JWT (ancienne version)
         },
       });
 
       if (response.status === 200) {
         const data = await response.json();
-        // console.log("la réponse à la requête est :", data);
+
         setIsLoading(false);
         setUserData(data);
-      } else if (response.status !== 200) {
-        console.error(response);
-        navigate("/login");
-      } else {
-        // Log des détails de la réponse en cas d'échec
-
-        navigate("/login");
-        console.info(response);
+      } else if (response.status === 401) {
+        setIsLoading(false);
+        logout(true);
       }
     } catch (err) {
       // Log des erreurs possibles
@@ -61,10 +46,10 @@ function Profil() {
   };
 
   useEffect(() => {
-    if (currentUser !== null) {
+    if (user !== "null" || user !== null) {
       getProfile();
     } else {
-      navigate("/login");
+      navigate("/connexion");
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);

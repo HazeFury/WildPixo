@@ -2,11 +2,13 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import styles from "./AddNews.module.css";
+import { useUserContext } from "../../../contexts/UserContext";
 
 function AddNews() {
   const ApiUrl = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
   const { id } = useParams();
+  const { logout } = useUserContext();
   const [editMode] = useState(id !== undefined); // if id is undefined, it means to that you want to create news. If id exist, it means that's this is a news you want to update
   const [reload, setReload] = useState(false);
   const notifySuccess = (text) => toast.success(text);
@@ -59,7 +61,7 @@ function AddNews() {
           headers: {
             "Content-Type": "application/json",
           },
-          credentials: "include", // envoyer / recevoir le cookie à chaque requête
+          credentials: "include",
           body: JSON.stringify(newsForm),
         }
       );
@@ -71,6 +73,12 @@ function AddNews() {
       } else if (response.status === 200) {
         navigate(`/news`);
         notifySuccess("l'opération a réussie");
+      } else if (response.status === 401) {
+        logout(true);
+      } else if (response.status === 403) {
+        const message = await response.json();
+        logout(false);
+        notifyFail(message);
       } else {
         notifyFail("l'opération a échouée");
       }

@@ -31,12 +31,14 @@ const login = async (req, res, next) => {
         }
       );
 
+      delete user.id;
+
       res
         .cookie("access_token", token, {
-          httpOnly: true,
-          sameSite: "Lax",
-          secure: process.env.NODE_ENV === "production",
-          maxAge: 3600000,
+          httpOnly: true, // Prevents access to client-side cookies (eg: via Javascript)
+          sameSite: "Lax", // The Lax variant adds an exception for sending the cookie in case the request does not come from the original site
+          secure: process.env.NODE_ENV === "production", // Allows you to prevent a cookie from being sent to an insecure page (simple http)
+          maxAge: 3600000, // Set the lifetime of the cookie. The duration must be the same as the JWT token. Time is in millisecond (1000 = 1s => 3 600 000 = 1h)
         })
         .json({ user });
     } else {

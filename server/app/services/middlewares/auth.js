@@ -65,13 +65,13 @@ const verifyCookie = (req, res, next) => {
   try {
     const token = req.cookies.access_token;
     if (!token) {
-      return res.sendStatus(403);
+      return res.sendStatus(401);
     }
     req.auth = jwt.verify(token, process.env.APP_SECRET);
 
     return next();
   } catch (err) {
-    return res.sendStatus(401).send("il y eu une erreur");
+    return res.sendStatus(404).send("il y eu une erreur");
   }
 };
 
@@ -87,7 +87,7 @@ const verifyIsAdmin = async (req, res, next) => {
 
     return next();
   } catch (err) {
-    return res.sendStatus(401).send("il y eu une erreur");
+    return res.sendStatus(404).send("il y eu une erreur");
   }
 };
 

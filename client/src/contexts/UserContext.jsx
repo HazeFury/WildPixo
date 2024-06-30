@@ -1,38 +1,24 @@
 import PropTypes from "prop-types";
-import { createContext, useContext, useState, useEffect, useMemo } from "react";
+import { createContext, useContext, useMemo } from "react";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-toastify";
+import useLocalStorage from "../hooks/useLocalStorage";
 
 const UserContext = createContext();
 
 export function UserProvider({ children }) {
   const ApiUrl = import.meta.env.VITE_API_URL;
-  const [currentUser, setCurrentUser] = useState(null);
+  const navigate = useNavigate();
+  const notifyFail = (text) => toast.error(text);
 
-  const isUserConnected = async () => {
-    try {
-      // Appel à l'API pour demander une connexion
-      const response = await fetch(`${ApiUrl}/user/is-connected`, {
-        credentials: "include", // envoyer / recevoir le cookie à chaque requête
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+  const [user, setUser] = useLocalStorage("user", null);
 
-      if (response.status === 200) {
-        setCurrentUser(true);
-      } else {
-        // Log des détails de la réponse en cas d'échec
-        console.info(response);
-        setCurrentUser(null);
-      }
-    } catch (err) {
-      // Log des erreurs possibles
-      console.error(err);
-    }
+  const login = (userData) => {
+    setUser(userData);
   };
 
-  const logout = async () => {
+  const logout = async (sessionExpired) => {
     try {
-      // Appel à l'API pour demander une connexion
       const response = await fetch(`${ApiUrl}/user/logout`, {
         credentials: "include", // envoyer / recevoir le cookie à chaque requête
         headers: {
@@ -41,23 +27,23 @@ export function UserProvider({ children }) {
       });
 
       if (response.status === 200) {
-        setCurrentUser(null);
+        setUser(null);
+        navigate(sessionExpired === true ? "/connexion" : "/");
+        if (sessionExpired === true) {
+          notifyFail("Votre session a expiré. Veuillez vous reconnecter.");
+        }
       }
     } catch (err) {
       // Log des erreurs possibles
       console.error(err);
+      notifyFail("Une erreur est survenu !");
     }
   };
 
-  useEffect(() => {
-    isUserConnected();
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
-
   const memo = useMemo(
-    () => ({ currentUser, setCurrentUser, logout }),
+    () => ({ user, setUser, login, logout }),
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [currentUser]
+    [user]
   );
 
   return <UserContext.Provider value={memo}>{children}</UserContext.Provider>;

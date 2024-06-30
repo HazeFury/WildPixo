@@ -10,7 +10,7 @@ function Login() {
   const notifyFail = (text) => toast.error(text);
   const navigate = useNavigate();
 
-  const { setCurrentUser } = useUserContext();
+  const { login } = useUserContext();
   const [loginInfos, setLoginInfos] = useState({
     mail: "",
     password: "",
@@ -35,11 +35,10 @@ function Login() {
       // Redirection vers la page de connexion si la création réussit
       if (response.status === 200) {
         const user = await response.json();
-        
-        setCurrentUser(true);
 
+        login(user.user);
         navigate("/");
-        notifySuccess(`Bienvenue ${user.username}`);
+        notifySuccess(`Bienvenue ${user.user.username}`);
       } else {
         // Log des détails de la réponse en cas d'échec
         console.info(response);

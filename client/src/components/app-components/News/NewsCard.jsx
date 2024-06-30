@@ -4,17 +4,22 @@ import { toast } from "react-toastify";
 import Modal from "../../ui-components/Modal/Modal";
 import scrollToTop from "../../../utils/scrollToTop";
 import styles from "./NewsCard.module.css";
+import { useUserContext } from "../../../contexts/UserContext";
 
 function NewsCard({ data, handleRefresh }) {
   const ApiUrl = import.meta.env.VITE_API_URL;
   const { id } = data;
   const notifySuccess = (text) => toast.success(text);
   const notifyFail = (text) => toast.error(text);
+
+  const { user, logout } = useUserContext();
+  const userIsAdmin = user?.role === "admin";
+
   const handleDelete = async () => {
     try {
       const response = await fetch(`${ApiUrl}/news/delete`, {
         method: "DELETE",
-        credentials: "include", // envoyer / recevoir le cookie à chaque requête
+        credentials: "include",
         headers: {
           "Content-Type": "application/json",
         },
@@ -23,6 +28,12 @@ function NewsCard({ data, handleRefresh }) {
 
       if (response.status === 200) {
         notifySuccess("L'opération a réussie");
+      } else if (response.status === 401) {
+        logout(true);
+      } else if (response.status === 403) {
+        const message = await response.json();
+        logout(false);
+        notifyFail(message);
       } else {
         notifyFail("L'opération a échouée");
       }
@@ -50,23 +61,27 @@ function NewsCard({ data, handleRefresh }) {
             Voir
           </button>
         </Link>
-        <Modal
-          openBtnText="Supprimer"
-          openBtnColor="red"
-          yesBtnText="Oui"
-          noBtnText="Non"
-          descriptionText={`Êtes-vous sûr de vouloir supprimer la news : ${data.title}`}
-          action={handleDelete}
-        />
-        <Link to={`/news/edit/${data.id}`}>
-          <button
-            type="button"
-            onClick={scrollToTop}
-            className="nes-btn is-blue"
-          >
-            Modifier
-          </button>
-        </Link>
+        {userIsAdmin === true && (
+          <>
+            <Modal
+              openBtnText="Supprimer"
+              openBtnColor="red"
+              yesBtnText="Oui"
+              noBtnText="Non"
+              descriptionText={`Êtes-vous sûr de vouloir supprimer la news : ${data.title}`}
+              action={handleDelete}
+            />
+            <Link to={`/news/edit/${data.id}`}>
+              <button
+                type="button"
+                onClick={scrollToTop}
+                className="nes-btn is-blue"
+              >
+                Modifier
+              </button>
+            </Link>
+          </>
+        )}
       </div>
     </article>
   );
