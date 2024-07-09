@@ -2,17 +2,23 @@ import { useState, useEffect } from "react";
 import { useParams, useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import styles from "./AddNews.module.css";
+import { useUserContext } from "../../../contexts/UserContext";
 
 function AddNews() {
   const ApiUrl = import.meta.env.VITE_API_URL;
   const navigate = useNavigate();
   const { id } = useParams();
+  const { logout } = useUserContext();
   const [editMode] = useState(id !== undefined); // if id is undefined, it means to that you want to create news. If id exist, it means that's this is a news you want to update
-  const [actualNews, setActualNews] = useState({});
+  const [reload, setReload] = useState(false);
   const notifySuccess = (text) => toast.success(text);
   const notifyFail = (text) => toast.error(text);
   const date = new Date();
   const formattedDate = date.toISOString().split("T")[0].replace(/-/g, "-");
+
+  const handleReload = () => {
+    setReload(!reload);
+  };
 
   const [newsForm, setNewsForm] = useState({
     title: "",
@@ -28,17 +34,17 @@ function AddNews() {
     if (editMode === true) {
       fetch(`${ApiUrl}/news/${id}`) // fetch the news with a given id
         .then((response) => response.json())
-        .then((data) => setActualNews(data))
-        .then(() => {
-          newsForm.title = actualNews.title; // replace values from the empty form by values from the news we just got
-          newsForm.intro = actualNews.intro;
-          newsForm.content = actualNews.content;
-          newsForm.date = actualNews.date.slice(0, 10);
-          newsForm.id = actualNews.id;
-        });
+        .then((data) => {
+          newsForm.title = data.title; // replace values from the empty form by values from the news we just got
+          newsForm.intro = data.intro;
+          newsForm.content = data.content;
+          newsForm.date = data?.date.slice(0, 10);
+          newsForm.id = data.id;
+        })
+        .then(() => handleReload());
     }
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [ApiUrl, editMode, id, actualNews]);
+  }, [editMode, id, ApiUrl]);
   // -----------------------------------------------------------
 
   const handleUpdateForm = (e) => {
@@ -55,6 +61,7 @@ function AddNews() {
           headers: {
             "Content-Type": "application/json",
           },
+          credentials: "include",
           body: JSON.stringify(newsForm),
         }
       );
@@ -66,6 +73,12 @@ function AddNews() {
       } else if (response.status === 200) {
         navigate(`/news`);
         notifySuccess("l'opération a réussie");
+      } else if (response.status === 401) {
+        logout(true);
+      } else if (response.status === 403) {
+        const message = await response.json();
+        logout(false);
+        notifyFail(message);
       } else {
         notifyFail("l'opération a échouée");
       }

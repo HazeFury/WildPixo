@@ -16,10 +16,11 @@ const browse = async (req, res, next) => {
 };
 
 // The R of BREAD - Read operation
-const read = async (req, res, next) => {
+const getProfile = async (req, res, next) => {
   try {
+    const { sub } = req.auth;
     // Fetch a specific user from the database based on the provided ID
-    const user = await tables.user.read(req.params.id);
+    const user = await tables.user.read(sub);
 
     // If the user is not found, respond with HTTP 404 (Not Found)
     // Otherwise, respond with the user in JSON format
@@ -27,6 +28,25 @@ const read = async (req, res, next) => {
       res.sendStatus(404);
     } else {
       res.json(user);
+    }
+  } catch (err) {
+    // Pass any errors to the error-handling middleware
+    next(err);
+  }
+};
+
+const findIfConnectedUser = async (req, res, next) => {
+  try {
+    const { sub } = req.auth;
+    // Fetch a specific user from the database based on the provided ID
+    const user = await tables.user.findConnectedUser(sub);
+
+    // If the user is not found, respond with HTTP 404 (Not Found)
+    // Otherwise, respond with the user in JSON format
+    if (user == null) {
+      res.sendStatus(404);
+    } else {
+      res.json(user).sendStatus(200);
     }
   } catch (err) {
     // Pass any errors to the error-handling middleware
@@ -60,7 +80,8 @@ const add = async (req, res, next) => {
 // Ready to export the controller functions
 module.exports = {
   browse,
-  read,
+  getProfile,
+  findIfConnectedUser,
   // edit,
   add,
   // destroy,

@@ -10,10 +10,12 @@ import User from "../../../assets/icons/users.png";
 
 function Navbar() {
   const [openMenu, setOpenMenu] = useState(false);
-  const { currentUser } = useUserContext();
   const screenSize = useScreenSize();
   const onMobileFormat = screenSize <= 1124;
   const onDesktopFormat = screenSize > 1124;
+
+  const { user } = useUserContext();
+  const userIsNotConnected = user === "null" || user === null;
 
   const handleOpenMenu = () => {
     setOpenMenu(!openMenu);
@@ -64,7 +66,7 @@ function Navbar() {
             </NavLink>
             <NavLink
               className={styles.navlink_style}
-              to={currentUser !== null ? "/profil" : "/connexion"}
+              to={userIsNotConnected ? "/connexion" : "/profil"}
             >
               <button type="button" className="nes-btn is-violet">
                 <img
@@ -117,13 +119,13 @@ function Navbar() {
             </button>
           </Link>
           <div style={{ marginTop: 30, borderTop: "solid white 2px" }}>
-            <Link to={currentUser !== null ? "/profil" : "/connexion"}>
+            <Link to={userIsNotConnected ? "/connexion" : "/profil"}>
               <button
                 type="button"
                 className="nes-btn is-violet"
                 onClick={handleCloseMenu}
               >
-                {currentUser !== null ? "Voir mon profil" : "Se connecter"}
+                {userIsNotConnected ? "Se connecter " : "Voir mon profil"}
               </button>
             </Link>
           </div>

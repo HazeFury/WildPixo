@@ -1,15 +1,13 @@
-import { useUserContext } from "../../../contexts/UserContext";
+import PropTypes from "prop-types";
 import styles from "./ProfilData.module.css";
 // https://robohash.org/
 
-function ProfilData() {
-  const { currentUser } = useUserContext();
-
+function ProfilData({ userData }) {
   return (
     <section className={styles.profil_data_container}>
       <img
         className={styles.profil_img}
-        src={`https://robohash.org/${currentUser?.user.username}`}
+        src={`https://robohash.org/${userData?.username}`}
         alt="avatar logo"
       />
       <div>
@@ -19,7 +17,7 @@ function ProfilData() {
             type="text"
             id="pseudo"
             className="nes-input"
-            value={currentUser?.user.username}
+            value={userData?.username}
             readOnly
           />
         </div>
@@ -29,7 +27,7 @@ function ProfilData() {
             type="text"
             id="mail"
             className="nes-input"
-            value={currentUser?.user.mail}
+            value={userData?.mail}
             readOnly
           />
         </div>
@@ -37,5 +35,12 @@ function ProfilData() {
     </section>
   );
 }
+
+ProfilData.propTypes = {
+  userData: PropTypes.shape({
+    username: PropTypes.string.isRequired,
+    mail: PropTypes.string.isRequired,
+  }).isRequired,
+};
 
 export default ProfilData;

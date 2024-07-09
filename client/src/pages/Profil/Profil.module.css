@@ -9,3 +9,11 @@
 .logout_btn {
   margin: 40px 0;
 }
+
+.section_container {
+  min-height: calc(100dvh - 80px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
