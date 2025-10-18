@@ -1,3 +1,126 @@
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Wild Pixo</title>
+<!-- Priority tags. These must come first. -->
+<meta charset="utf-8">
+<meta http-equiv="x-ua-compatible" content="ie=edge; chrome=1"> <!-- Render Chrome if available or using latest version of Internet Explorer (Recommended). -->
+<meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
+<!-- Document Title -->
+<title>{{ header_title }}</title>
+<!-- Allows control over where resources are loaded from. Place as early in the document as possible, only applies to content below this tag. -->
+<meta http-equiv="Content-Security-Policy" content="default-src 'self'">
+<!-- Base URL to use for all relative URLs contained within the document -->
+<base href="https://wildpixo.com/">
+<!-- Geo Positioning Meta Tags. -->
+<meta name="geo.position"  content="{{ header_geo_position }}">
+<meta name="geo.region"    content="{{ header_geo_region }}">
+<meta name="geo.placename" content="{{ header_geo_placename }}">
+<meta name="ICBM"          content="{{ header_geo_ICBM_x }}, {{ header_geo_ICBM_y }}">
+<meta name="DC.title"      content="{{ header_geo_dc_title }}">
+<!-- Search Eengine and Browser Meta Tags. -->
+<meta name="description" content="{{ header_description }}"> <!-- Keep under 500 characters -->
+<meta name="abstract"    content="{{ header_abstract }}"> <!-- Keep uder 100 characters -->
+<meta name="rating"      content="{{ header_rating }}"> <!-- General, 14 Years, Mature or Restricted -->
+<!-- Search engine robots Meta Tags. -->
+<!-- <meta name="robots" content="noindex, nofollow, noodp, noydir, noarchive"> Disable from all search engines. -->
+<!-- Open Graph Meta Tags (ogp.me) -->
+<meta property="og:image"            content="{{ header_og_image }}">         <!-- Web page thumbnail -->
+<meta property="og:site_name"        content="{{ header_og_site_name }}">        <!-- Web site title -->
+<meta property="og:title"            content="{{ header_og_title }}">                    <!-- Web page title -->
+<meta property="og:description"      content="{{ header_og_description }}">  <!-- Web page description -->
+<meta property="og:type"             content="{{ header_og_type }}">                       <!-- Content type ["product", "blog", "website", "book", "movie", ... ] -->
+<meta property="og:url"              content="{{ header_og_url }}"> <!-- Url to this web page -->
+<meta property="og:locale"           content="{{ header_og_locale }}">                         <!-- Main Language (en_GB, fr_FR, es_ES, ...) -->
+<meta property="og:locale:alternate" content="{{ header_og_locale_alternate }}">                         <!-- Alternate Language -->
+<meta property="og:latitude"         content="{{ header_og_latitude }}">                      <!-- Geographical coordenate -->
+<meta property="og:longitude"        content="{{ header_og_longitude }}">                      <!-- Geographical coordenate -->
+<meta property="og:street-address"   content="{{ header_og_streetaddress }}">        <!-- Postal Address -->
+<meta property="og:locality"         content="{{ header_og_locality }}">                        <!-- Locality -->
+<meta property="og:region"           content="{{ header_og_region }}">                        <!-- Region -->
+<meta property="og:postal-code"      content="{{ header_og_postalcode }}">                        <!-- Post code -->
+<meta property="og:country-name"     content="{{ header_og_countryname }}">                            <!-- Country -->
+<meta property="og:email"            content="{{ header_og_email }}">             <!-- Contact email -->
+<meta property="og:phone_number"     content="{{ header_og_phonenumber }}">              <!-- Contact phone number -->
+<meta property="og:video"            content="{{ header_og_video }}">  <!-- Video file url-->
+<meta property="og:video:height"     content="{{ header_og_video_height }}">                           <!-- Video height -->
+<meta property="og:video:width"      content="{{ header_og_video_width }}">                           <!-- Video width -->
+<meta property="og:video:type"       content="{{ header_og_video_type }}"> <!-- Video file format type -->
+<!-- Facebook Meta Tags. -->
+<meta property="fb:app_id" content="{{ header_fb_appid }}">
+<!-- Twitter Meta Tags. -->
+<meta name="twitter:card" content="{{ header_twitter_card }}">
+<meta name="twitter:site" content="{{ header_twitter_site }}">
+<meta name="twitter:creator" content="{{ header_twitter_creator }}">
+<meta name="twitter:url" content="{{ header_twitter_url }}">
+<meta name="twitter:title" content="{{ header_twitter_title }}">
+<meta name="twitter:description" content="{{ header_twitter_description }}">
+<meta name="twitter:image" content="{{ header_twitter_image }}">
+<!-- Favicon Meta Tags.  -->
+<link rel="icon" href="{{ header_icon }}">
+<link rel="icon" href="{{ header_icon_16 }}"  sizes="16x16"   type="image/png">
+<link rel="icon" href="{{ header_icon_32 }}"  sizes="32x32"   type="image/png">
+<link rel="icon" href="{{ header_icon_48 }}"  sizes="48x48"   type="image/png">
+<link rel="icon" href="{{ header_icon_62 }}"  sizes="62x62"   type="image/png">
+<link rel="icon" href="{{ header_icon_128 }}" sizes="128x128" type="image/png">
+<link rel="icon" href="{{ header_icon_192 }}" sizes="192x192" type="image/png">
+<!-- Web App Settings. -->
+<meta name="application-name" content="{{ header_application_name }}">
+<meta name="mobile-web-app-capable" content="yes">
+<!-- Apple iOS Settings. -->
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-status-bar-style" content="{{ header_application_name }}">
+<meta name="apple-mobile-web-app-title" content="App Title">
+<meta name="apple-itunes-app" content="app-id=APP_ID, affiliate-data=AFFILIATE_ID, app-argument=http/url-sample.com"> <!-- App Banner. -->
+<meta name="format-detection" content="telephone=no">
+<link rel="apple-touch-icon" href="/graphics/apple-touch-icon.png">
+<link rel="apple-touch-icon-precomposed" href="/graphics/apple-touch-icon-precomposed.png">
+<link rel="apple-touch-icon" sizes="57x57" href="/graphics/apple-icon-57.png">
+<link rel="apple-touch-icon" sizes="72x72" href="/graphics/apple-icon-72.png">
+<link rel="apple-touch-icon" sizes="114x114" href="/graphics/apple-icon-114.png">
+<link rel="apple-touch-icon" sizes="144x144" href="/graphics/apple-icon-144.png">
+<link rel="alternate" href="ios-app://APP-ID/http/url-sample.com"> <!-- Apple iOS app deep linking. -->
+<meta property="al:ios:url" content="applinks://docs">
+<meta property="al:ios:app_store_id" content="12345">
+<meta property="al:ios:app_name" content="App Links">
+<!-- Google Android. -->
+<meta name="theme-color" content="#E64545">
+<meta name="google-play-app" content="app-id=package-name">
+<link rel="alternate" href="android-app://package-name/http/url-sample.com"> <!-- Android app deep linking. -->
+<meta property="al:android:url" content="applinks://docs">
+<meta property="al:android:app_name" content="App Links">
+<meta property="al:android:package" content="org.applinks">
+<!-- Apple Safari Pinned Site. -->
+<link rel="mask-icon" href="path/to/icon.svg" color="red">
+<!-- Google Chrome. -->
+<link rel="chrome-webstore-item" href="https://chrome.google.com/webstore/detail/APP_ID">
+<meta name="google" value="notranslate">
+<!-- Windows Internet Explorer. -->
+<meta http-equiv="cleartype" content="on">
+<meta name="skype_toolbar" content="skype_toolbar_parser_compatible">
+<meta name="msapplication-tap-highlight" content="no">
+<meta name="application-name" content="Contoso Pinned Site Caption">
+<meta name="msapplication-tooltip" content="Example Tooltip Text">
+<meta name="msapplication-starturl" content="/">
+<meta name="msapplication-allowDomainApiCalls" content="true">
+<meta name="msapplication-allowDomainMetaTags" content="true">
+<meta name="msapplication-badge" content="frequency=30; polling-uri=http://example.com/id45453245/polling.xml">
+<meta name="msapplication-navbutton-color" content="#FF3300">
+<meta name="msapplication-notification" content="frequency=60;polling-uri=http://example.com/livetile">
+<meta name="msapplication-square150x150logo" content="/graphics/ie-logo.png">
+<meta name="msapplication-square310x310logo" content="/graphics/ie-logo-large.png">
+<meta name="msapplication-square70x70logo" content="/graphics/ie-logo-small.png">
+<meta name="msapplication-wide310x150logo" content="/graphics/ie-logo-wide.png">
+<meta name="msapplication-task" content="name=Check Order Status;action-uri=./orderStatus.aspx?src=IE9;icon-uri=./favicon.ico">
+<meta name="msapplication-task-separator" content="1">
+<meta name="msapplication-TileColor" content="#FF3300">
+<meta name="msapplication-TileImage" content="path/to/tileimage.jpg">
+<meta name="msapplication-window" content="width=1024;height=768">
+<!-- External Stylesheets. -->
+<link rel="stylesheet" href="/stylesheets/styles.css">
+<!-- Typekit. -->
+<script src="//use.typekit.com/XXXXXXX.js"></script>
+<!-- Humans -->
+<link rel="author" href="/humans.txt">
+<link rel="copyright" href="/copyright.html">
+<!-- Alternative Languages. -->
+<link rel="alternate" href="https://ja.example.com/" hreflang="ja">
+<!-- HMTL5 Prefetching -->
+<link rel="prefetch" href="//example.com">            <!-- Prefetch the full page -->
+<link rel="prefetch" href="//example.com/sprite.png"> <!-- Prefetch a single asset -->
